@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f1f1f1;
+}
+
+/* Form css */
+.commodity-form{
+    margin-left: 2vh;
+    margin-right: 2vh;
+  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    
+}
+
+.form-group{
+    margin: 1vh;
+    width: 20vh;
+ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+.form-group label{
+    width: 10vh;
+   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+
