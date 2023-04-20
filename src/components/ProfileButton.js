@@ -1,10 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
-// import JSONPretty from "react-json-pretty";
-import React from 'react';
 
 const ProfileButton = () => {
 
  
+  
   const { user, logout, isAuthenticated ,loginWithRedirect} = useAuth0();
 
     

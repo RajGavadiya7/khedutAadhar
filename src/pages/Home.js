@@ -2,6 +2,7 @@ import React from "react";
 import "./css/Home.css";
 import { Link } from "react-router-dom";
 import ProfileButton from "../components/ProfileButton";
+
 const Home = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Home = () => {
 
         <div className="login-area">
           <ProfileButton />
+          {/* <LoginButton /> */}
           </div> 
 
 
