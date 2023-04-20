@@ -2,28 +2,40 @@
 import React from "react";
 
 
-// Default export function
-function CardForm( props ) {
-  const { data } = props;
-  console.log(data);
-  return (
-    <tbody>
-      <tr className="container">
-        <td className="cards-container">
-        {data.length > 0 ? (
-            data
-          ) : (
-            <div weight={1000} align="center">
-              <h2 color='#007bff'>We are updating Prices after Crop haraji(Auction) for perticular marketyard</h2> 
 
-              <h2>Visit after few hours</h2>
+const CardForm = ({data}) => {
+  
+  
+  if(data.length > 0){
+  
+    return (
+      <div className="cards-container">
+        {data.map((row , id) => (
+          <div className="card-container" key={id}>
+            <div className="crop">
+              <p className="crop-name">{row.commodity}</p>
+              <p className="crop-variety">{row.variety}</p>
             </div>
-          )}
-                      
-        </td>
-      </tr>
-      <style>
-        {`
+
+            <div className="place">
+              <p className="market">{row.market}</p>
+              <p className="district">{row.district}</p>
+              <p className="state">{row.state}</p>
+            </div>
+
+            <div className="price">
+              <p className="min-price">{row.min_price}</p>
+              <p className="max-price">{row.max_price}</p>
+            </div>
+            <div className="last">
+              <p className="modal-price">{row.modal_price}</p>
+              <p className="date">Today</p>
+            </div>
+          </div>
+        ))}
+
+<style>
+    {`
         .container{
           width: 96vw;
           background: transparent;
@@ -40,8 +52,20 @@ function CardForm( props ) {
           }
         `}
       </style>
-    </tbody>
-  );
+      </div>
+    )
+  }
+
+  else{
+    return(
+      <div weight={1000} align="center">
+      <h3 color='#007bff'>We are updating Prices after Crop Auction for perticular marketyard</h3>  
+      <h2>Visit after few hours</h2>
+    </div>
+    )
+  }
 }
 
+
+  
 export default CardForm;

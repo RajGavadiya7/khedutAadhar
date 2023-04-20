@@ -50,22 +50,21 @@
     z-index: 0;
 }
 
-.home-navbar .navbar a  {
+.menu {
+    
     text-decoration: none;
-
-    min-width: 64px;
-    padding: 0 20px;
-    font-size: 2rem;
+    padding: 0.5rem;
+    font-size: 1rem;
     font-weight: 500;
     font-style: normal;
     color: #fff;
+    background: #379248;
+    border-radius: 5%;
+    margin: 0.2rem;
+    
 }
 
 .home-navbar .navbar a:hover {
     color: rgb(75, 120, 148);
-    
-}
-
-.login-area {
     
 }

@@ -24,12 +24,12 @@ const Home = () => {
 
       {/* Navbar  */}
       <div className="home-navbar navbar">
-        <Link to="/">Home</Link>
-        <Link to="/price">Daily Crop Price</Link>
-        <Link to="/buy_crop">Buy Crop</Link>
-        <Link to="/sell_crop">Sell Crop</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+        <Link className="menu" to="/">Home</Link>
+        <Link className="menu" to="/price">Daily Crop Price</Link>
+        <Link className="menu" to="/buy_crop">Buy Crop</Link>
+        <Link className="menu" to="/sell_crop">Sell Crop</Link>
+        <Link className="menu" to="/about">About</Link>
+        <Link className="menu" to="/contact">Contact</Link>
       </div>
     </div>
   );
