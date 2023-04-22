@@ -37,6 +37,14 @@ const Price_table = ({data}) => {
             </tr>
           ))}
         </tbody>
+        <style>
+          {`
+          .table{
+            margin: 2rem;
+          }
+          `}
+          
+        </style>
       </table>
       
     )

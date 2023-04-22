@@ -58,6 +58,15 @@ function Daily_prices() {
   }
 
     
+  const tableIcon = () => {
+    if(displayType === "card"){
+      return <img className="table-logo" height="80px" src="https://static.thenounproject.com/png/1861887-200.png" alt="table"/>
+    }
+    else{
+      return <img className="table-logo" height="80px" src="https://cdn-icons-png.flaticon.com/512/7604/7604036.png" alt="table"/>
+    }
+  }
+
   
   return (
     <div>
@@ -102,21 +111,39 @@ function Daily_prices() {
           <textarea onChange={handleDistrict} defaultValue={district} className="form-control" id="district" rows="1" style={{ resize: "none" }} />
         </div>
      
-        <div>   
+       
           <button onClick={handleSubmit} type="submit" className="btn btn-primary">
           Submit
         </button>
-        </div>
-
-        <div>
-          <button onClick={tableOrCard} type="submit" className="btn btn-primary">
-          {displayType === "card" ? "Table" : "Card"}
-        </button>
-        </div>
+       
+        
      
       </form>
 
-      <div><h1> Daily Crop Price </h1></div>
+
+      <div className="data-area">
+        <h1> Daily Crop Price </h1>
+        <div className="data">
+          <button onClick={tableOrCard} type="submit" className="toogle-btn">
+          {tableIcon()}
+          {/* {displayType === "card" ? "Table" : "Card"} */}
+        </button>
+        </div>
+        <style>
+          {`
+            .data-area{
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+            }
+            .toogle-btn{
+              margin-left: 1rem;
+              border: none;
+            }
+           
+          `}
+        </style>
+        </div>
      
     
       {displayType === "card" ?  <CardForm data = {Price_data} />  : <Price_table data = {Price_data} /> }
