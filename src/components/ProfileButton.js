@@ -1,13 +1,12 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import {auth} from "../Firebase";
+
 
 const ProfileButton = () => {
 
- 
-  
-  const { user, logout, isAuthenticated ,loginWithRedirect} = useAuth0();
 
     
-  if (!isAuthenticated) {
+  if (!auth.currentUser) {
         return ( <button onClick={() => loginWithRedirect()} type="button" className="btn btn-success">Log In</button>);
   } 
   else {
@@ -16,12 +15,12 @@ const ProfileButton = () => {
 
       <div class="dropdown">
         <button class="dropbtn">
-        <img className="user-logo"  src={user.picture} alt={user.name} />
+        <img className="user-logo"  src={auth.user.picture} alt={auth.user.name} />
         </button>
 
         <div class="dropdown-content">
-          <span>{user.name}</span>
-          <button onClick={() => logout()} type="button" className="btn btn-success">Log Out</button>
+          <span>{auth.user.name}</span>
+          <button src="/login" type="button" className="btn btn-success">Log Out</button>
           
         </div>
 
