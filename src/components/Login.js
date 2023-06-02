@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link,  useNavigate } from "react-router-dom"
+import {GoogleButton} from 'react-google-button'
+
 
 export default function Login ({setLogOrSign}) {
   const emailRef = useRef()
@@ -30,6 +32,29 @@ export default function Login ({setLogOrSign}) {
     setLogOrSign("signup")
   }
 
+  const {googleSignIn} = useAuth()
+
+  const handleGoogleSignIn = async () => {
+    try{
+      await googleSignIn()
+      .then((result) => {
+       
+        const user = result.user;
+
+        console.log(user)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        console.log(errorCode, errorMessage, email)
+    
+      });
+
+    } catch (error) {
+      setError(error.code)
+    }
+  }
 
   return (
     <>
@@ -60,7 +85,10 @@ export default function Login ({setLogOrSign}) {
         <Button  onClick={handleSignup}>
             Sign Up
           </Button>
-         
+      </div>
+
+      <div className="w-100 text-center mt-2">
+        <GoogleButton onClick={googleSignIn} />
       </div>
     </>
   )
