@@ -1,60 +1,55 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link,  useNavigate } from "react-router-dom"
-import {GoogleButton} from 'react-google-button'
+import React, { useRef, useState } from "react";
+import { Form, Button, Card, Alert } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { GoogleButton } from "react-google-button";
 
-
-export default function Login ({setLogOrSign}) {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+export default function Login({ setLogOrSign }) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setError("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
-      
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
     } catch (error) {
-      setError(error.code)
+      setError(error.code);
     }
 
-    setLoading(false)
+    setLoading(false);
   }
 
   const handleSignup = () => {
-    setLogOrSign("signup")
-  }
+    setLogOrSign("signup");
+  };
 
-  const {googleSignIn} = useAuth()
+  const { googleSignIn } = useAuth();
 
   const handleGoogleSignIn = async () => {
-    try{
+    try {
       await googleSignIn()
-      .then((result) => {
-       
-        const user = result.user;
+        .then((result) => {
+          const user = result.user;
 
-        console.log(user)
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        console.log(errorCode, errorMessage, email)
-    
-      });
-
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          const email = error.email;
+          console.log(errorCode, errorMessage, email);
+        });
     } catch (error) {
-      setError(error.code)
+      setError(error.code);
     }
-  }
+  };
 
   return (
     <>
@@ -71,7 +66,7 @@ export default function Login ({setLogOrSign}) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 mt-2" type="submit">
               Log In
             </Button>
           </Form>
@@ -79,17 +74,23 @@ export default function Login ({setLogOrSign}) {
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
         </Card.Body>
+        <div
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            alignContent: "center",
+          }}
+        >
+          <GoogleButton className="m-2" onClick={handleGoogleSignIn} />
+        </div>
       </Card>
       <div className="w-100 text-center mt-2">
         Need an account?
-        <Button  onClick={handleSignup}>
-            Sign Up
-          </Button>
-      </div>
-
-      <div className="w-100 text-center mt-2">
-        <GoogleButton onClick={googleSignIn} />
+        <Button onClick={handleSignup}>Sign Up</Button>
       </div>
     </>
-  )
+  );
 }

@@ -1,28 +1,38 @@
 import React from "react";
-import {auth} from "../Firebase";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 
 const ProfileButton = () => {
 
-
-    
-  if (!auth.currentUser) {
-        return ( <button onClick={() => loginWithRedirect()} type="button" className="btn btn-success">Log In</button>);
+  const { currentUser } = useAuth();
+  
+  
+  if (!currentUser) {
+    return ( 
+      <Link to="/profile">
+        <button className="btn btn-success">Log In</button>
+      </Link>
+    );
   } 
   else {
         
     return (
 
-      <div class="dropdown">
-        <button class="dropbtn">
-        <img className="user-logo"  src={auth.user.picture} alt={auth.user.name} />
+      
+      <div className="dropdown">
+        <Link  to="/profile">
+        <button className="dropbtn">
+        <img className="user-logo"  src={currentUser.photoURL} alt={currentUser.displayName} />
         </button>
+        </Link>
+      
 
-        <div class="dropdown-content">
-          <span>{auth.user.name}</span>
+        {/* <div className="dropdown-content">
+          <span>{currentUser.name}</span>
           <button src="/login" type="button" className="btn btn-success">Log Out</button>
-          
-        </div>
+        </div> */}
 
         <style>
           {`

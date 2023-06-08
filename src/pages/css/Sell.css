@@ -1,0 +1,279 @@
+.sell-page{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+.form-heading{
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #09b7cb;
+    font-family:cursive
+
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;  
+    max-width: 60rem;
+    width: 100%;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* 1st Row */
+.form-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 2rem; */
+    background-color: #4B7A0F;
+    border-radius: 1rem;
+}
+
+.form-header-text{
+    padding-top:1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    font-family: inter
+}
+
+
+/* 2nd Row */
+.form-section-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-section-header-text{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0810E3;
+    font-family: inter;
+    margin-top: 2rem;
+}
+
+
+/* 3rd Row */
+
+.form-input-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: flex-start;
+}
+ 
+.input-column-1{
+    max-width: 20rem;
+    width:100%;
+} 
+
+.input-column-2{
+    max-width: 25rem;
+    width:100%;
+}
+
+.input-label{
+    width:100%;  
+    margin: 0rem 1rem;
+    margin-bottom:  1rem;
+    /* Required */
+    
+}
+
+
+.input-label label{
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 1rem;
+    color: #046212;
+}
+
+.input-column-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+/* 6th Row Form-Ack */
+.form-ack{
+    margin-top: 3rem;
+}
+
+.mantine-Checkbox-label{
+    font-family: 'Inter';
+    /* font-weight: 500; */
+    color: #000000;
+    margin-right: 0.5rem;
+}
+
+
+/* 7th Row  Submit button */
+.form-submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.form-submit-button{
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+.form-submit-button:hover {
+    transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+
+
+  /* --------------------------------------------Your Crops Container --------------------------- */
+
+.your-crops-container{
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+
+.your-crops-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.your-crops-header p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #046212;
+    font-family: inter;
+}
+
+
+.crop-list-accordion{
+    /* display: flex; */
+    /* align-items: center; */
+    /* place-content: center flex-start; */
+    /* flex-flow: row wrap; */
+    justify-content: center!important;
+    /* flex-direction: column; */
+    /* align-content: center; */
+    
+}
+
+.crop-list-accordion-item{
+    max-width: 50rem;
+    width: 100%;
+
+}
+
+
+.accordion-item{
+    border:none!important;
+}
+
+
+.accordion-button{
+    margin-bottom: 1rem;
+    border: 1px solid;
+    border-radius: 12px;
+    transform: scale(1.0);
+    display: inline-block;
+    /* border: none; */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-button:hover{
+    background-color: #ffffff;
+    color: #175012;
+    transform: scale(1.01);
+    box-shadow: 0 0 12px rgba(11, 155, 51, 0.667);
+    
+}
+
+td{
+    font-size: 0.8rem;
+}
+
+/* -------------------------------------------- 600px ---------------------------------------------------------- */
+
+@media screen and (max-width: 600px) {
+    
+    .form-input-container{
+        justify-content: flex-start;
+    }
+    .input-column-1{
+        margin:0rem;
+        max-width: 100%;
+    } 
+    
+    .input-column-2{
+        margin:0rem;
+        max-width:100%;
+    }
+
+    .input-label{
+        width:100%;
+        margin: 0.1rem;
+    }
+
+
+    .input-label label{
+        font-family: 'Inter';
+        font-weight: 600;
+        font-size: 1rem;
+        color: #046212;
+        margin-left:0.2rem
+    }
+
+    .form{
+        padding: 1rem;
+    }
+
+    .form-header-text{
+        padding: 0.5rem !important;
+        font-size: 1.2rem;
+        margin:0rem !important;
+    }
+    .form-section-header-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0rem !important;
+        margin-top: 1rem;
+    }
+
+}

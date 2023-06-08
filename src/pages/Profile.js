@@ -6,14 +6,14 @@ import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../Firebase";
 import React, { useState } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
 
 const Profile = () => {
-  const [loading, setLoading] = useState(false);
+//   const [loading, setLoading] = useState(false);
   const [logOrSign, setLogOrSign] = useState("login");
 
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
+  
   async function handleLogout() {
     setError("");
     try {
@@ -46,10 +46,10 @@ const Profile = () => {
           <Card.Body>
             <h2 className="text-center mb-4">Profile</h2>
             {error && <Alert variant="danger">{error}</Alert>}
-            <strong>Email:</strong> {currentUser.email}
-            <Link to="/update-profile" className="btn btn-primary w-10 m-3">
-              Update Profile
-            </Link>
+            <strong>Email:</strong>
+            <img className="user-logo"  src={currentUser.photoURL} alt={currentUser.displayName} />
+             {currentUser.email}
+            
           </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
@@ -57,6 +57,12 @@ const Profile = () => {
             Log Out
           </Button>
         </div>
+
+
+
+
+      
+
       </>
     );
   }

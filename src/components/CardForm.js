@@ -2,29 +2,30 @@
 import React from "react";
 
 const CardForm = ({ data }) => {
+
   if (data.length > 0) {
     return (
-      <div className="cards-container">
+      <div className="pricecard-container-wrapper">
         {data.map((row, id) => (
-          <div className="card-container" key={id}>
-            <div className="crop">
+          <div className="pricecard-container" key={id}>
+            <div className="card-row-1">
               <p className="crop-name">{row.commodity}</p>              
               <p className="crop-variety"> { row.variety}</p>
             </div>
 
-            <div className="place">
+            <div className="card-row">
               <p className="market">{row.market}</p>
               <p className="district">{row.district}</p>
               <p className="state">{row.state}</p>
             </div>
 
-            <div className="price">
+            <div className="card-row">
               <p className="min-price">Min:{row.min_price}</p>
               <p className="max-price">Max:{row.max_price}</p>
             </div>
-            <div className="last">
+            <div className="card-row">
               <p className="modal-price">Modal:{row.modal_price}</p>
-              <p className="date">Today</p>
+              <p className="date">{row.arrival_date}</p>
             </div>
           </div>
         ))}
@@ -32,51 +33,55 @@ const CardForm = ({ data }) => {
         <style>
           {`
 
-          .container{
-            width: 96vw;
-            background: transparent;
-          }
-          .cards-container{
-            display:flex;
-            align-items:flex-start;
-            justify-content:flex-start;
-            width:96vw;
-            height: auto;
-            flex-wrap: wrap;
-            margin:2rem;
-            padding:0;
-          }
-
-
-          .card-container, .crop, .place, .price, .last{
+          .pricecard-container-wrapper {
             display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            width: 100%;
-            padding: 0.2rem;
-          }
-          .card-container {
-            flex-direction: column;
-            margin:0.2rem;
-            border-left: 8px solid #18bb5c;
-            background-color: #95959513;
-            border-radius: 5px;
-            width:18rem;
-            max-width:18rem;
-            height:10rem;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 0.5rem;
           }
 
-          .crop  {
-            padding: 0 0.5rem;
-            align-items: center;
+          .pricecard-container {
+            display: flex;
+    margin: 0.2rem;
+    border-left: 8px solid #18bb5c;
+    background-color: #f2edede8;
+    border-radius: 5px;
+    max-width: 18rem;
+    width: -webkit-fill-available;
+    height: 10rem;
+    flex-direction: column;
+    justify-content: flex-start;
           }
+
+          .card-row-1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            max-height: 4rem;
+            height: -webkit-fill-available;
+            padding: 0 0.5rem;
+          }
+
+          .card-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.5rem;
+            max-height: 2rem;
+            height: -webkit-fill-available;
+          }
+
 
           .crop-name{
             margin: 0;
             margin-right: 0.3rem;
             color: #2909d0;
-            font-size: 2vh;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 900;
           }
 
           .crop-variety {
@@ -87,14 +92,6 @@ const CardForm = ({ data }) => {
             color: #d39e00;
           }
 
-          .place{
-            margin: 0;
-            height: 2rem;
-            font-size: 1.8vh;
-            font-weight: 400;
-            color: #214d12;
-            align-items: end;
-          }
 
           .market,.district , .state{
             margin: 0 0.2rem;
@@ -102,14 +99,14 @@ const CardForm = ({ data }) => {
 
           .min-price , .max-price , .modal-price {
           margin: 0;
-          color:#54df8e;
-          font-size: 1.2rem;
+          color: #006b2d;
+          font-size: 1rem;
           font-weight: 700;
           margin-right: 0.5rem;
           }
 
           .max-price{
-          color:rgb(233, 80, 80)
+          color: #f00;
           }
           .modal-price{
           color: #1ebfdb;
@@ -119,18 +116,38 @@ const CardForm = ({ data }) => {
           margin: 0;
           color:green;
           }
-        `}
+
+`}
         </style>
       </div>
     );
   } else {
     return (
-      <div weight={1000} align="center">
-        <h3 color="#007bff">
-          We are updating Prices after Crop Auction for perticular marketyard
-        </h3>
-        <h2>Visit after few hours</h2>
+      <>
+      <div className="no-crop-msg" weight={1000} align="center">
+        <p className="no-crop-msg-text" color="#007bff">
+          We update Prices after Crop Auction of perticular marketyard
+        </p>
+        <p className="no-crop-msg-text" >Visit again after some hours</p>
       </div>
+
+      <style>
+        {`
+        .no-crop-msg{
+          margin-top: 2rem;
+          background: azure;
+          padding: 2rem;
+
+        }
+        .no-crop-msg-text{
+          font-size: 1.5rem;
+          font-weight: 900;
+          color: #007bff;
+          font-family: cursive;
+        `}
+        
+      </style>
+      </>
     );
   }
 };
