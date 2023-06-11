@@ -5,14 +5,29 @@ import ProfileButton from "../components/ProfileButton";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import { Burger } from '@mantine/core';
+import { Button } from '@mantine/core';
 import MenuNavbar from "../components/MenuNavbar";
+// import Button from '@material-ui/core/Button';
 
 
-const Home = () => {
+
+export default function Header() {
+
+  
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
 
+  
+
+  const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+  };
+  
+  
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 800);
@@ -28,7 +43,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="bg-image"></div>
+      {/* <div className="bg-image"></div> */}
 
       <div className="logo-area logo-bg-image">
         <div className="logo-container">
@@ -82,9 +97,20 @@ const Home = () => {
         )}
       </div>
 
-      {/* Main Content */}
+      <Button
+      onClick={scrollToTop}
+      style={{
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        zIndex: 9999
+      }}
+    >
+      Scroll to Top
+    </Button>
+      
+
+    
     </div>
   );
-};
-
-export default Home;
+}

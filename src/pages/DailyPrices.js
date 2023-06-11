@@ -15,7 +15,7 @@ export default function DailyPrices() {
   const [district, setDistrict] = useState("Patan");
   const [displayType, setDisplayType] = useState("card");
 
-  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000011d6d9c6d7a6e48d647fa0adc178fa21f&format=json&limit=${1000}&filters%5Bstate%5D=${state}&filters%5Bdistrict%5D=${district}`;
+  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000011d6d9c6d7a6e48d647fa0adc178fa21f&format=json&limit=10000&filters%5Bstate%5D=${state}&filters%5Bdistrict%5D=${district}`;
 
   const getData = async () => {
     try {
@@ -76,18 +76,20 @@ export default function DailyPrices() {
         <div className="form-group">
           <label for="district">District</label>
           <textarea
+          
             onChange={handleDistrict}
             defaultValue={district}
             className="form-control"
             id="district"
             rows="1"
             style={{ resize: "none" }}
+            
           />
         </div>
         <button
           onClick={handleSubmit}
           type="submit"
-          className="btn btn-success find-button"
+          className="btn btn-success find-button form-submit-button"
         >
           Get Price
         </button>

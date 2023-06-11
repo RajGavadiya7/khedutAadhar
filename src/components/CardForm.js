@@ -7,7 +7,7 @@ const CardForm = ({ data }) => {
     return (
       <div className="pricecard-container-wrapper">
         {data.map((row, id) => (
-          <div className="pricecard-container" key={id}>
+          <div id={id} className="pricecard-container" key={id}>
             <div className="card-row-1">
               <p className="crop-name">{row.commodity}</p>              
               <p className="crop-variety"> { row.variety}</p>

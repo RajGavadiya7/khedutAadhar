@@ -1,21 +1,244 @@
-.buy-container{
-    background-color: aliceblue;
+.buy-container {
+  background-color: aliceblue;
+}
+
+.buy-form {
+  display: flex;
+    flex-direction: row;
+    margin: 2rem 0rem;
+    padding: 0 1rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar {
+  /* background: none; */
+  max-width: 40rem;
+  width: 100%;
+  margin: 0 2rem;
+}
+
+.search-crop-body {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 2rem;
+  margin: 2rem 0;
+}
+
+.crop-list-container {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin: 1rem;
+  width: 100%;
+  border-radius: 19px;
+  align-items: center;
+  padding: 1rem;
+}
+
+.crop-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 1rem;
+  box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1);
+}
+
+.crop-list-image {
+  margin-right: 1rem;
+  max-width:10rem;
+  width:100%;
+  border-radius: 10px;
+}
+.crop-list-image img {
+  width:100%;
+  border-radius: 10px;
+}
+
+.crop-list-details {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.crop-list-name-crop {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #069a15;
+  margin-bottom: 1rem;
+}
+
+.crop-list-name-variety {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  /* font-size: 1.1rem; */
+  color: #928a8a;
+}
+
+.crop-list-seller-mobile {
+  /* font-size: 1.2rem; */
+  font-weight: 400;
+}
+.crop-list-location-city {
+  /* font-size: 1.2rem; */
+  font-weight: 400;
+}
+.crop-list-location-state {
+  /* font-size: 1.2rem; */
+  font-weight: 400;
+}
+
+.crop-price-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  padding: 1rem;
+  /* margin:1rem; */
+}
+
+.crop-list-quantity {
+  font-size: 1rem;
+  font-weight: 400;
+  margin:0.5rem;
+}
+.crop-list-price {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin:0.5rem
 }
 
 
-.buy-form{
+
+.filter-input{
+  max-width: -webkit-fill-available;
+}
+
+.crop-filter{
+  padding: 1rem;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem 0;
-    padding: 2rem 0;
-    
+    max-height: 16rem;
+    height: 100%;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 19px;
+    box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1);
+
 }
 
-.search-bar{
-    
-    background: none;
-    max-width: 40rem;
+.crop-filter-container-mobile{
+  display: none;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+
+.crop-filter-container{
+    display: none;
+
+}
+.crop-filter-container-mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0rem;
     width: 100%;
-    margin:0 2rem;
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 19px;
+    box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1);
+}
+  
+    .crop-list-container{
+        margin: 1rem 0rem;
+    }
+  .search-crop-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin:1rem; */
+  }
+
+  .crop-list-details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+
+  .crop-list-details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+  }
+
+  .crop-list-image {
+    display:none;
+  }
+
+  .crop-list-name{
+    margin:0rem;
+    margin-left:1rem;
+  }
+  
+.crop-list-name-crop {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #069a15;
+    margin-bottom: 1rem;
+  }
+  
+  .crop-list-name-variety {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #928a8a;
+  }
+  
+  .crop-list-seller-mobile {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .crop-list-location-city {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .crop-list-location-state {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  
+ 
+  
+  .crop-list-quantity {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .crop-list-price {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
 }

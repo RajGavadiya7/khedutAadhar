@@ -56,6 +56,7 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
       <div className="form-input-container">
         <div className="input-column-1">
           <InputBase
+            maxLength={25}
             className="input-label"
             label="Crop Name"
             name="selectedCrop"
@@ -64,6 +65,7 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
             required
           />
           <InputBase
+            maxLength={25}
             className="input-label"
             label="Crop Variety"
             name="selectedVariety"
@@ -76,11 +78,12 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
           <div className="input-column-row">
             
             <InputBase
+              maxLength={6}
               className="input-label"
               type="text"
               pattern="[0-9]*"
               inputMode="numeric"
-              label="Quantity /Kg"
+              label="Quantity(Kg)"
               name="selectedQuantity"
               value={formData.selectedQuantity}
               onChange={handleInputChange}
@@ -94,7 +97,7 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
               
             />
             <InputBase
-
+              maxLength={5}
               className="input-label"
               type="text"
               pattern="[0-9]*"
@@ -115,6 +118,7 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
           </div>
           <div className="input-column-row">
             <TextInput
+              maxLength={25}
               className="input-label"
               label="Certification level"
               placeholder="farmer certificate type"
@@ -159,6 +163,7 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
       <div className="form-input-container">
         <div className="input-column-1">
           <InputBase
+            maxLength={50}
             className="input-label"
             label="Seller Name"
             name="selectedSellerName"
