@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./css/Sell.css";
 import { useAuth } from "../contexts/AuthContext";
-import SellForm from "../components/SellForm";
+// import SellForm from "../components/SellForm";
 import {
   getFirestore,
   collection,
@@ -13,13 +13,18 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+
+import { v4 as uuidv4 } from "uuid";
 import app from "../Firebase";
 import Button from "react-bootstrap/Button";
 // import Accordion from "react-bootstrap/Accordion";
 // import { Table, ScrollArea } from "@mantine/core";
 // import { v4 as uuidv4 } from 'uuid';
+import UserSelledCrop from "../components/UserSelledCrop";
 import Modal from "react-bootstrap/Modal";
-import styled from "styled-components";
+// import styled from "styled-components";
+const SellForm = React.lazy(() => import("../components/SellForm"));
+
 
 const Sell = () => {
   // All firebase stuffs
@@ -165,37 +170,20 @@ const Sell = () => {
           </Button>
         </div>
 
+
+
         {/* User selled Crops list */}
         {currentUser ? (
           userSelledCrops ? (
             <div className="crop-list-container">
               {userSelledCrops.map((crop) => (
-                <>
-                  <SellCard>
-                    <div className="card-header">
-                      <p className="card-header-text">{crop.selectedCrop}</p>
-                    </div>
-
-                    <div className="card-body">
-                      <p className="card-body-text">{crop.selectedVariety}</p>
-                    </div>
-
-                    <div className="card-footer">
-                      <Button
-                        variant="info"
-                        onClick={() => handleOpenUpdateModal(crop)}
-                      >
-                        Update
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={() => deleteData(crop.id)}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </SellCard>
-                </>
+                  <UserSelledCrop
+                    id={uuidv4()}
+                    crop={crop}
+                    handleOpenUpdateModal={handleOpenUpdateModal}
+                    deleteData={deleteData}
+                  />
+                
               ))}
 
               <Modal
@@ -277,7 +265,7 @@ const Sell = () => {
 
       <div className="form-container">
         {currentUser ? (
-          <>
+          <div className="sell-crop-button-container">
             <Button variant="primary" onClick={() => setShowSellForm(true)}>
               Sell Crops
             </Button>
@@ -304,7 +292,7 @@ const Sell = () => {
             />
             </Modal.Body>
             </Modal>
-          </>
+          </ div>
         ) : (
           <div className="form-login">
             <p className="form-login-text">Please login to sell crops</p>
@@ -317,16 +305,6 @@ const Sell = () => {
 };
 
 export default Sell;
-
-// Sell Card Styles
-const SellCard = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 1rem;
-`;
-// 
-
 
 
 

@@ -17,20 +17,14 @@ import crop4 from "../data/CropsImage/crop4.svg";
 import crop5 from "../data/CropsImage/crop5.svg";
 import crop6 from "../data/CropsImage/crop6.svg";
 import crop7 from "../data/CropsImage/crop7.svg";
-import { InputBase } from "@mantine/core";
+// import { InputBase } from "@mantine/core";
 import { Districts } from "../data/Districts";
 import { IconCurrencyRupee } from "@tabler/icons-react";
-import { useAuth } from "../contexts/AuthContext";
+// import { useAuth } from "../contexts/AuthContext";
 import {
   getFirestore,
   collection,
-  addDoc,
-  query,
-  where,
   getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
 } from "firebase/firestore";
 import app from "../Firebase";
 
@@ -51,6 +45,7 @@ const Buy = () => {
   const [district, setDistrict] = React.useState(""); // district for filter
   const [secondFilterData, setSecondFilterData] = React.useState([]); // filtered crops data from filter
 
+  const [sortBy , setSortBy] = React.useState("Any");
   // ------------------------------------------- All data -------------------------------------------
   const fetchAllCropsData = async () => {
     try {
@@ -159,7 +154,28 @@ const Buy = () => {
     return selectedStateData ? selectedStateData.districts : [];
   };
 
-  useState(() => {
+
+  // ------------------------------------------- Sort By -------------------------------------------
+  useEffect(() => {
+    let sortedData = [...showData];
+  
+    if (sortBy === "Price (Low to High)") {
+      sortedData.sort((a, b) => a.selectedPrice - b.selectedPrice);
+    } else if (sortBy === "Price (High to Low)") {
+      sortedData.sort((a, b) => b.selectedPrice - a.selectedPrice);
+    } else if (sortBy === "Crop Name (A to Z)") {
+      sortedData.sort((a, b) => a.selectedCrop.localeCompare(b.selectedCrop));
+    } else if (sortBy === "Crop Name (Z to A)") {
+      sortedData.sort((a, b) => b.selectedCrop.localeCompare(a.selectedCrop));
+    } else if (sortBy === "Any") {
+      sortedData = allCrops;
+    }
+    setShowData(sortedData);
+  }, [sortBy]);
+  
+
+
+  useEffect(() => {
     fetchAllCropsData();
   }, []);
 
@@ -254,6 +270,20 @@ const Buy = () => {
             </form>
           </div>
           <div className="crop-list-container">
+            
+            <div className="sortby-container" style={{display: 'flex' ,  width: '100%' , justifyContent: 'flex-end' }}>
+              <Select
+                  label="Sort by:"
+                  placeholder="sort by "
+                  name="sortBy"
+                  value={sortBy}
+                  onChange={setSortBy}
+                  data={["Any", "Price (Low to High)" , "Price (High to Low)",  "Crop Name (A to Z)" , "Crop Name (Z to A)"]}
+                
+                />
+            </div>
+
+
             {showData
               .slice((currentPage - 1) * 5, currentPage * 5)
               .map((crop) => {

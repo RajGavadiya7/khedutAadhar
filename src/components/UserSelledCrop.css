@@ -1,0 +1,148 @@
+
+
+.selled-crop-container {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem;
+    max-width: 25rem;
+    width: 100%;
+    min-height: 12rem;  
+    margin:1rem;
+}
+
+
+.sellcard-row-1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 50px; */
+}
+
+.sellcard-row-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 50px; */
+}
+
+.sellcard-row-1-col{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.sellcard-row-1-col-3{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.selled-crop-name{
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #447220;
+    margin-bottom: 1rem;
+}
+
+.selled-crop-variety{
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 1rem;    
+    color: #8A8686;   
+}
+
+.selled-crop-quantity{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;    
+    color: #395B6E;
+    margin-bottom: 1rem;
+       
+}
+
+.selled-crop-season{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 1rem;
+color: #395B6E;
+}
+
+
+.selled-crop-price{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0bad15;
+    margin-bottom: 1rem;
+    padding: 0.6rem;
+    background-color: #dcefff;
+    border-radius: 10px;
+    max-width: 9rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+       
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    .selled-crop-container{
+        padding: 0.5rem;
+        margin:0.5rem;
+    }
+
+    .sellcard-row-1{
+        grid-gap: 0.2rem;
+    }
+
+    .selled-crop-name{
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .selled-crop-variety{
+        font-weight: 500;
+        font-size: 0.9rem;    
+           
+    }
+    
+    .selled-crop-quantity{
+       
+        font-weight: 500;
+        font-size: 0.9rem;    
+           
+    }
+    
+    .selled-crop-season{
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+    
+    
+    .selled-crop-price{
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.3rem;     
+    }
+    
+}

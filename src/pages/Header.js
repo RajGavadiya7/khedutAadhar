@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./css/Home.css";
 import { Link } from "react-router-dom";
 import ProfileButton from "../components/ProfileButton";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { Button } from '@mantine/core';
+// import Container from "react-bootstrap/Container";
+// import Nav from "react-bootstrap/Nav";
+// import Navbar from "react-bootstrap/Navbar";
+import { Button  } from '@mantine/core';
 import MenuNavbar from "../components/MenuNavbar";
 // import Button from '@material-ui/core/Button';
-
-
+import {IconCircleArrowUp } from '@tabler/icons-react';
+import styled, { keyframes } from 'styled-components';
 
 export default function Header() {
 
@@ -43,7 +43,7 @@ export default function Header() {
 
   return (
     <div>
-      {/* <div className="bg-image"></div> */}
+      <div className="bg-image"></div>
 
       <div className="logo-area logo-bg-image">
         <div className="logo-container">
@@ -97,7 +97,9 @@ export default function Header() {
         )}
       </div>
 
-      <Button
+
+
+      {/* <Button
       onClick={scrollToTop}
       style={{
         position: 'fixed',
@@ -106,11 +108,54 @@ export default function Header() {
         zIndex: 9999
       }}
     >
-      Scroll to Top
-    </Button>
+      Scroll to Top */}
+  <StyledIconButton
+  onClick={scrollToTop}
+  size={50}
+  color="blue"
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = 'scale(1)';
+    e.currentTarget.style.boxShadow = 'none';
+  }}
+>
+  <IconCircleArrowUp size={50} />
+</StyledIconButton>
+
       
 
     
     </div>
   );
 }
+
+
+
+
+
+
+const magicShadowAnimation = keyframes`
+  0% {
+    box-shadow: 0px 5px 15px 5px rgba(173, 216, 230, 0.7);
+  }
+  100% {
+    box-shadow: 0px 10px 20px 10px rgba(173, 216, 230, 0.7);
+  }
+`;
+
+// StyledIconButton component with magicShadow animation
+const StyledIconButton = styled(Button)`
+  position: fixed;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: none;
+
+  &:hover {
+    transform: scale(1.1);
+    animation: ${magicShadowAnimation} 1s infinite alternate;
+  }
+`;

@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import buyGif from '../data/FeaturesGif/buy.gif';
 import sellGif from '../data/FeaturesGif/sell.gif';
 import tractorGif from '../data/FeaturesGif/tractor.gif';
+import dailyCropPrice from "../data/FeaturesGif/dailyCropPrice.svg"
 
 
 // import Images from "../data/HomeFeaturesImages";
@@ -89,14 +90,14 @@ const useStyles = createStyles((theme) => ({
 
 const HomeFeatures = () => {
 
-  const IMAGES = { buyGif, sellGif, tractorGif };
+  const IMAGES = { dailyCropPrice ,buyGif, sellGif, tractorGif };
   const supTitle = "Features";
   const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.";
                        
 
   const data = [
     {
-      image: "dailypriceGif",
+      image: "dailyCropPrice",
       title: "Daily Crop Prices",
       description:
         "Stay updated with daily crop prices in your area. Get real-time market information to make informed decisions about your crop sales, maximize profits, and stay competitive.",

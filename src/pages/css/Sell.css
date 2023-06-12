@@ -153,11 +153,16 @@
 
 
 
+
+
+
+
   /* --------------------------------------------Your Crops Container --------------------------- */
 
 .your-crops-container{
+
     margin: 1rem;
-    padding: 1rem;
+    padding-top: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     background-color: rgb(255, 255, 255);
@@ -181,6 +186,17 @@
     font-family: inter;
 }
 
+.crop-list-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin: 1rem; */
+    /* padding: 1rem; */
+    /* border-radius: 1rem; */
+    
+}
 
 .crop-list-accordion{
     /* display: flex; */
@@ -228,6 +244,17 @@
 td{
     font-size: 0.8rem;
 }
+
+
+
+.sell-crop-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+
 
 /* -------------------------------------------- 600px ---------------------------------------------------------- */
 
