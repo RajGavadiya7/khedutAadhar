@@ -40,7 +40,7 @@ const Sell = () => {
   const [selectedCropId, setSelectedCropId] = useState(null);
   const [showSellForm, setShowSellForm] = useState(false);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({ 
     selectedCrop: "",
     selectedVariety: "",
     selectedQuantity: "",
@@ -54,16 +54,7 @@ const Sell = () => {
     selectedDistrict: "",
   });
 
-  // all CRUD operations
-
-  const createSell = async (data) => {
-    try {
-      await addDoc(sellCropsRef, data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+  // ----------------------------------- Fetch all data ---------------------- 
   const fetchUserData = async () => {
     const q = query(
       sellCropsRef,
@@ -84,23 +75,13 @@ const Sell = () => {
     }
   };
 
-  const updateCropData = async (updatedData) => {
-    try {
-      const docRef = doc(db, "buyCropsList", updatedData.id);
-      await updateDoc(docRef, updatedData);
-      fetchUserData();
-      console.log("Data updated successfully");
-      setShowUpdateModal(false);
-    } catch (error) {
-      console.error(error);
-      console.log("Error while updating data");
-    }
-  };
 
+  // ---------------------------Delete data and its confirmation dialog box --------------
   const deleteData = (id) => {
     setSelectedCropId(id);
     setShowConfirmationDialog(true);
   };
+
 
   const handleDeleteConfirmation = async () => {
     try {
@@ -115,48 +96,64 @@ const Sell = () => {
     setShowConfirmationDialog(false);
   };
 
+  
+  
+
+
+  // --------------------------------------Update Data ---------------------------
   const handleOpenUpdateModal = (crop) => {
     setUpdateFormData(crop);
     setShowUpdateModal(true);
   };
 
-  const handleSubmit = (event) => {
+
+  const handleUpdate = async (event) => {
     event.preventDefault();
+  
+    const docRef = doc(db, "buyCropsList", updateFormData.id);
+    await updateDoc(docRef, updateFormData).catch((err) => {
+      console.log(err);
+    });
 
-    if (showUpdateModal) {
-      updateCropData(updateFormData);
-      // setShowUpdateModal(false);
-      // clear updaed data
-      // setUpdateFormData(null);
-    } else {
-      createSell(formData);
+    fetchUserData();
+    console.log("Data updated successfully");
+    setShowUpdateModal(false);
+     
+  } 
 
-      fetchUserData();
-      console.log(formData);
 
-      // clear form data
-      setFormData({
-        selectedCrop: "",
-        selectedVariety: "",
-        selectedQuantity: "",
-        selectedPrice: "",
-        selectedCertification: "",
-        selectedSeason: "Kharif (JUN-NOV)",
-        selectedSellerName: "",
-        selectedMobileNumber: "",
-        selectedState: "",
-        selectedDistrict: "",
-      });
+  // ---------------------------------------Submit new form --------------------------- 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setShowSellForm(false);
+    await addDoc(sellCropsRef , formData).catch((err) => {console.log(err)});
+    fetchUserData();
+    console.log(formData);
 
-      setShowSellForm(false);
-
-      alert("Form submitted");
-    }
+    // clear form data
+    setFormData({
+      selectedCrop: "",
+      selectedVariety: "",
+      selectedQuantity: "",
+      selectedPrice: "",
+      selectedCertification: "",
+      selectedSeason: "Kharif (JUN-NOV)",
+      selectedSellerName: "",
+      selectedMobileNumber: "",
+      selectedState: "",
+      selectedDistrict: "",
+      selectedEmail: currentUser ?  currentUser.email : ""
+    });
+    alert("Form submitted");
   };
+
+
 
   useEffect(() => {
     fetchUserData();
   },   []  );
+
+
 
   return (
     <div className="sell-page">
@@ -178,7 +175,7 @@ const Sell = () => {
             <div className="crop-list-container">
               {userSelledCrops.map((crop) => (
                   <UserSelledCrop
-                    id={uuidv4()}
+                    key={uuidv4()}
                     crop={crop}
                     handleOpenUpdateModal={handleOpenUpdateModal}
                     deleteData={deleteData}
@@ -206,7 +203,7 @@ const Sell = () => {
                     formData={updateFormData}
                     setFormData={setUpdateFormData}
                     currentUser={currentUser}
-                    handleSubmit={handleSubmit}
+                    handleSubmit={handleUpdate}
                     // dialogClassName="modal-100w"
                   />
                 </Modal.Body>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {v4 as uuidv4} from "uuid";
 import "./css/Buy.css";
 import {
   TextInput,
@@ -183,8 +184,8 @@ const Buy = () => {
     <div className="buy-container">
       <Marquee>
         <MarqueeGroup>
-          {CropsImage.map((image, index) => (
-            <Image2 id={index} src={image} />
+          {CropsImage.map((image) => (
+            <Image2 key={uuidv4()} src={image} />
           ))}
           <Image src={TractorGif} />
         </MarqueeGroup>
@@ -283,12 +284,14 @@ const Buy = () => {
                 />
             </div>
 
+          <hr style={{width: '100%', }}/>  
+
 
             {showData
               .slice((currentPage - 1) * 5, currentPage * 5)
               .map((crop) => {
                 return (
-                  <div className="crop-list">
+                  <div key={uuidv4()} className="crop-list">
                     <div className="crop-list-image">
                       <img
                         src="https://findfresh.in/attachments/shop_images/caps.webp"
