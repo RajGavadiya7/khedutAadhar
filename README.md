@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Farmer Portal   https://krushi-aadhar.web.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Logo](https://krushi-aadhar.web.app/image/logo.svg)
 
-## Available Scripts
+Welcome to Farmer Portal, a web application that provides daily crop prices, facilitates buying and selling of crops, offers tractor hiring and rental services, and allows users to sell farming equipment. The platform connects farmers and buyers, making it easier to conduct agricultural transactions.
 
-In the project directory, you can run:
+## Functionalities
 
-### `npm start`
+### Daily Crop Prices
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Daily Crop Prices feature allows users to check the latest crop prices in various markets. Farmers can stay updated on market trends and make informed decisions about their produce.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Buy Crops
 
-### `npm test`
+The Buy Crops feature enables users to connect with organic farmers and buy crops directly from them at the best prices. It promotes transparency and fair trade practices in the agricultural sector.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Sell Crops
 
-### `npm run build`
+The Sell Crops feature empowers farmers to sell their crops to interested buyers through the platform. It provides a convenient marketplace for farmers to showcase their produce and reach a wider audience.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Hire Tractor
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Hire Tractor feature assists farmers in finding and hiring tractors for their farming activities. It helps farmers access reliable and cost-effective tractor services, saving time and effort.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Rent Tractor
 
-### `npm run eject`
+The Rent Tractor feature allows farmers to rent out their tractors to other farmers in need of additional equipment. It promotes collaboration within the farming community and helps farmers generate additional income.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Sell Farming Equipment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Sell Farming Equipment feature enables users to sell their farming equipment to interested buyers. It provides a platform for users to browse and purchase pre-owned equipment, reducing costs and promoting sustainability.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contributing
 
-## Learn More
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [MIT License](LICENSE).
