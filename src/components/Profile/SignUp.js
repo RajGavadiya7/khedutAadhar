@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, redirect, useNavigate } from "react-router-dom"
-import { auth } from "../Firebase"
+import { useAuth } from "../../contexts/AuthContext"
+// import { Link, redirect, useNavigate } from "react-router-dom"
+import { auth } from "../../Firebase"
 
 export default function Signup({ setLogOrSign}) {
   const emailRef = useRef()
@@ -11,7 +11,7 @@ export default function Signup({ setLogOrSign}) {
   const { signup } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault()

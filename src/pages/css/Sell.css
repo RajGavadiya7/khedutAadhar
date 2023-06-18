@@ -79,17 +79,17 @@
 }
  
 .input-column-1{
-    max-width: 20rem;
+    max-width: 24rem;
     width:100%;
 } 
 
 .input-column-2{
-    max-width: 25rem;
+    max-width: 24rem;
     width:100%;
 }
 
 .input-label{
-    width:100%;  
+    /* width:100%;   */
     margin: 0rem 1rem;
     margin-bottom:  1rem;
     /* Required */
@@ -112,6 +112,13 @@
 }
 
 
+
+.image-input-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
 /* 6th Row Form-Ack */
 .form-ack{

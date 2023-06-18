@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import { Link  } from "react-router-dom";
 import { GoogleButton } from "react-google-button";
 
 export default function Login({ setLogOrSign }) {
@@ -10,7 +10,7 @@ export default function Login({ setLogOrSign }) {
   const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();

@@ -1,13 +1,15 @@
 // Import Modules
 import React from "react";
+import {v4 as uuidv4} from "uuid";
 
-const CardForm = ({ data }) => {
+
+const CardForm =  ({ data }) => {
 
   if (data.length > 0) {
     return (
       <div className="pricecard-container-wrapper">
         {data.map((row, id) => (
-          <div id={id} className="pricecard-container" key={id}>
+          <div key={uuidv4()} className="pricecard-container" >
             <div className="card-row-1">
               <p className="crop-name">{row.commodity}</p>              
               <p className="crop-variety"> { row.variety}</p>

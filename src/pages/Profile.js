@@ -1,7 +1,7 @@
-import SignUp from "../components/SignUp";
+import SignUp from "../components/Profile/SignUp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
-import Login from "../components/Login";
+import Login from "../components/Profile/Login";
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../Firebase";
 import React, { useState } from "react";

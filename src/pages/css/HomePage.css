@@ -3,7 +3,36 @@
     padding: 1rem;
     background: rgba(255, 255, 255, 0.671);
     height: 100%;
-    
+}
+.info-container-title{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.info-container-title2{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #143d1a;
+}
+
+
+.card-container-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    padding: 1rem;
 }
 
 

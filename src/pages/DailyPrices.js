@@ -1,11 +1,11 @@
 // Import Modules
 import React from "react";
 import { useState } from "react";
-import PriceTable from "../components/PriceTable";
+import PriceTable from "../components/DailyCropPrice/PriceTable";
 import "./css/Daily_price.css";
-import CardForm from "../components/CardForm";
+import CardForm from "../components/DailyCropPrice/CardForm";
 import { StateList } from "../data/StateList";
-// const key = process.env.REACT_APP_API_KEY;
+import {v4 as uuidv4} from "uuid";
 
 export default function DailyPrices() {
 
@@ -14,8 +14,10 @@ export default function DailyPrices() {
   const [state, setState] = useState("Gujarat");
   const [district, setDistrict] = useState("Patan");
   const [displayType, setDisplayType] = useState("card");
+  const key = process.env.REACT_APP_API_KEY;
 
-  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000011d6d9c6d7a6e48d647fa0adc178fa21f&format=json&limit=10000&filters%5Bstate%5D=${state}&filters%5Bdistrict%5D=${district}`;
+
+  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${key}&format=json&limit=10000&filters%5Bstate%5D=${state}&filters%5Bdistrict%5D=${district}`;
 
   const getData = async () => {
     try {
@@ -61,22 +63,23 @@ export default function DailyPrices() {
     <div>
       <form className="commodity-form">
         <div className="form-group">
-          <label for="state">State</label>
+          <label label="state">State</label>
           <select
+            value={state}
             onChange={handleState}
             defaultValue={state}
             className="form-control"
             id="state"
           >
             {StateList.map((state) => {
-              return <option value={state}>{state}</option>;
+              return <option key={uuidv4()} value={state}>{state}</option>;
             })}
           </select>
         </div>
         <div className="form-group">
-          <label for="district">District</label>
+          <label label="district">District</label>
           <textarea
-          
+            value={district}
             onChange={handleDistrict}
             defaultValue={district}
             className="form-control"
@@ -118,7 +121,6 @@ export default function DailyPrices() {
           )}
         </button>
       </div>
-
 
 
       <div className="crop-data">

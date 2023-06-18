@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollArea, Table } from "@mantine/core";
+import { v4 as uuidv4 } from "uuid";
 
 const PriceTable = ({ data }) => {
   return (
@@ -28,7 +29,7 @@ const PriceTable = ({ data }) => {
 
         <tbody>
           {data.map((item) => (
-            <tr>
+            <tr key={uuidv4()}>
               <th scope="row">{item.state}</th>
               <td> {item.district} </td>
               <td> {item.market} </td>

@@ -3,9 +3,9 @@ import { auth } from "../Firebase";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
-  signOut,
-  onAuthStateChanged,
+  // signInWithRedirect,
+  // signOut,
+  // onAuthStateChanged,
 } from "firebase/auth";
 
 const AuthContext = createContext();

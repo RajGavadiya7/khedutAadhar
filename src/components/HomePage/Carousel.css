@@ -1,0 +1,43 @@
+.carousel-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-title{
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #510568;
+  padding:5px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.625);
+}
+.label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 6px;
+  border-radius: 5px;
+  color: #1f7e38;
+  text-align: center;
+  font-family: cursive;
+  background: #d7ecffcf;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .carousel-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin:0.3rem;
+    padding:4px;
+  }
+
+  .label {
+    font-size: 1rem;
+    padding:2px;
+  }
+}
+  

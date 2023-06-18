@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState  } from "react";
 import {v4 as uuidv4} from "uuid";
 import "./css/Buy.css";
 import {
@@ -18,35 +18,41 @@ import crop4 from "../data/CropsImage/crop4.svg";
 import crop5 from "../data/CropsImage/crop5.svg";
 import crop6 from "../data/CropsImage/crop6.svg";
 import crop7 from "../data/CropsImage/crop7.svg";
-// import { InputBase } from "@mantine/core";
 import { Districts } from "../data/Districts";
-import { IconCurrencyRupee } from "@tabler/icons-react";
-// import { useAuth } from "../contexts/AuthContext";
 import {
   getFirestore,
   collection,
   getDocs,
 } from "firebase/firestore";
 import app from "../Firebase";
+import loadable from "@loadable/component";
+import { Navigate , useNavigate } from "react-router-dom";
+
+
+const  BuyCropCard = loadable(() => import("../components/BuyCrop/BuyCropCard"));
+
 
 const Buy = () => {
+
+  const navigate = useNavigate();
+
   const CropsImage = [crop1, crop2, crop3, crop4, crop5, crop6, crop7];
   const db = getFirestore(app);
   const sellCropsRef = collection(db, "buyCropsList");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [showData, setShowData] = React.useState([]); // data that want to be shown
+  const [showData, setShowData] = useState([]); // data that want to be shown
 
-  const [allCrops, setAllCrops] = React.useState([]); // all crops data from firebase
+  const [allCrops, setAllCrops] = useState([]); // all crops data from firebase
 
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [filterData, setFilterData] = React.useState([]); // filtered crops data from Search bar
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterData, setFilterData] = useState([]); // filtered crops data from Search bar
 
-  const [state, setState] = React.useState(""); // state for filter
-  const [district, setDistrict] = React.useState(""); // district for filter
-  const [secondFilterData, setSecondFilterData] = React.useState([]); // filtered crops data from filter
+  const [state, setState] = useState(""); // state for filter
+  const [district, setDistrict] = useState(""); // district for filter
+  const [sortBy , setSortBy] = useState("Any");
 
-  const [sortBy , setSortBy] = React.useState("Any");
+
   // ------------------------------------------- All data -------------------------------------------
   const fetchAllCropsData = async () => {
     try {
@@ -68,19 +74,13 @@ const Buy = () => {
 
   // ------------------------------------------- Search bar -------------------------------------------
   const handleSearch = () => {
-    if (searchTerm === "") {
-      setSearchTerm("");
-      // setShowData(allCrops);
-      // setFilterData([]);
-      // setSecondFilterData([]);
-    } else {
+    if (searchTerm !== ""){
       const filteredData = allCrops.filter((item) => {
         const regex = new RegExp(searchTerm, "i"); // Case-insensitive regex pattern
         return regex.test(item.selectedCrop);
       });
       setShowData(filteredData);
       setFilterData(filteredData);
-      setSecondFilterData([]);
       setCurrentPage(1);
     }
   };
@@ -95,13 +95,12 @@ const Buy = () => {
           (item) => item.selectedState === state
         );
         setShowData(tempData);
-        setSecondFilterData(tempData);
       } else {
         const tempData = filterData.filter(
           (item) => item.selectedState === state
         );
         setShowData(tempData);
-        setSecondFilterData(tempData);
+       
       }
       setCurrentPage(1);
     } else {
@@ -110,13 +109,13 @@ const Buy = () => {
           (item) => item.selectedDistrict === district
         );
         setShowData(tempData);
-        setSecondFilterData(tempData);
+     
       } else {
         const tempData = filterData.filter(
           (item) => item.selectedDistrict === district
         );
         setShowData(tempData);
-        setSecondFilterData(tempData);
+       
       }
       setCurrentPage(1);
     }
@@ -124,7 +123,7 @@ const Buy = () => {
 
   // ------------------------------------------- Clear Filter -------------------------------------------
   const handleClearFilter = () => {
-    if (state !== "" || district !== "") {
+    if (state !== "" || district !== "") {  
       setState("");
       setDistrict("");
       if (filterData.length === 0) {
@@ -145,7 +144,7 @@ const Buy = () => {
     setDistrict("");
     setShowData(allCrops);
     setFilterData([]);
-    setSecondFilterData([]);
+    // setSecondFilterData([]);
     setCurrentPage(1);
   };
 
@@ -158,6 +157,7 @@ const Buy = () => {
 
   // ------------------------------------------- Sort By -------------------------------------------
   useEffect(() => {
+
     let sortedData = [...showData];
   
     if (sortBy === "Price (Low to High)") {
@@ -173,12 +173,11 @@ const Buy = () => {
     }
     setShowData(sortedData);
   }, [sortBy]);
+
   
-
-
   useEffect(() => {
     fetchAllCropsData();
-  }, []);
+  } , []);
 
   return (
     <div className="buy-container">
@@ -287,68 +286,16 @@ const Buy = () => {
           <hr style={{width: '100%', }}/>  
 
 
-            {showData
+            <div className="buycropcard-container">
+            { showData.length === 0 && <h1 style={{textAlign: 'center' , marginTop: '2rem'}}>No crops available</h1>}
+             { showData
               .slice((currentPage - 1) * 5, currentPage * 5)
               .map((crop) => {
-                return (
-                  <div key={uuidv4()} className="crop-list">
-                    <div className="crop-list-image">
-                      <img
-                        src="https://findfresh.in/attachments/shop_images/caps.webp"
-                        alt="crop"
-                      />
-                    </div>
-
-                    <div className="crop-list-details">
-                      <div className="crop-list-name">
-                        <div className="crop-list-name-crop">
-                          {crop.selectedCrop}
-                        </div>
-                        <div className="crop-list-name-variety">
-                          {crop.selectedVariety}
-                        </div>
-                      </div>
-
-                      <div className="crop-list-location">
-                        <div className="crop-list-seller-mobile">
-                          {crop.selectedMobileNumber}
-                        </div>
-                        <div className="crop-list-location-city">
-                          {crop.selectedDistrict}
-                        </div>
-                        <div className="crop-list-location-state">
-                          {crop.selectedState}
-                        </div>
-                      </div>
-
-                      <div className="crop-price-button">
-                        <Button
-                          className="crop-list-quantity"
-                          style={{ marginTop: "1rem" }}
-                          onClick={handleApplyFilter}
-                          variant="light"
-                          color="indigo"
-                        >
-                          {crop.selectedQuantity} kg
-                        </Button>
-                        <Button
-                          variant="gradient" 
-                          gradient={{ from: 'blue', to: 'green' , deg:'45' }}
-                          leftIcon={<IconCurrencyRupee />}
-                          className="crop-list-price"
-                          style={{ marginTop: "1rem" }}
-                          onClick={handleApplyFilter}
-                          // variant="light"
-                          // color="green"
-                        >
-                        {crop.selectedPrice} / Kg
-                        </Button>
-                      
-                      </div>
-                    </div>
-                  </div>
+                return (  
+                    <BuyCropCard crop={crop} key={uuidv4()} />
                 );
               })}
+            </div>
 
             {/* Pageination  */}
 
@@ -419,6 +366,10 @@ const Buy = () => {
 };
 
 export default Buy;
+
+
+
+
 
 const Marquee = styled.div`
   overflow: hidden;

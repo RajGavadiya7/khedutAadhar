@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { InputBase, Select, Checkbox, TextInput, Tooltip  } from "@mantine/core";
+import React, { useEffect, useState } from "react";
+import { InputBase, Select, Checkbox, TextInput, Tooltip } from "@mantine/core";
 import { IMaskInput } from "react-imask";
 // import "./css/Sell.css";
-import { Districts } from "../data/Districts";
+import { Districts } from "../../data/Districts";
 
-const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
-  
+const SellForm = ({
+  formData,
+  setFormData,
+  currentUser,
+  handleSubmit,
+  cropImage,
+  setCropImage,
+}) => {
   const [focused, setFocused] = useState(false);
 
   const handleInputChange = (event) => {
@@ -16,16 +22,13 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
     }));
   };
 
-
   const handleStateChange = (stateValue) => {
     setFormData((prevData) => ({
       ...prevData,
       selectedState: stateValue,
       selectedDistrict: "",
     }));
-
   };
-
 
   const handleDistrictChange = (districtValue) => {
     setFormData((prevData) => ({
@@ -34,14 +37,32 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
     }));
   };
 
-
   const getDistrictsByState = (state) => {
     const selectedStateData = Districts.find((item) => item.state === state);
     return selectedStateData ? selectedStateData.districts : [];
   };
 
+  const handleImageChange = (event) => {
+    // Set file limit to 5mb
+    if (event.target.files[0].size > 5242880) {
+      event.target.value = null;
+      alert("File must be small than 5MB !!");
+      // clar image input
+      return;
+    }
 
-  
+    // accept only iamge files
+    if (!event.target.files[0].type.includes("image")) {
+      event.target.value = null;
+      alert("Please select an image file !!");
+      return;
+    }
+    setCropImage(event.target.files[0]);
+  };
+
+  useEffect(() => {
+    console.log(cropImage);
+  }, [cropImage]);
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -52,6 +73,17 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
       <div className="form-section-header">
         <p className="form-section-header-text">Crop Details</p>
       </div>
+
+      {/* show image url if  its there  */}
+      {formData.selectedCropImage && (
+        <div className="form-input-container">
+          <img
+            src={formData.selectedCropImage}
+            alt="Selected Crop"
+            style={{ width: "100%", maxHeight: "15rem", objectFit: "contain" }}
+          />
+        </div>
+      )}
 
       <div className="form-input-container">
         <div className="input-column-1">
@@ -76,7 +108,6 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
         </div>
         <div className="input-column-2">
           <div className="input-column-row">
-            
             <InputBase
               maxLength={6}
               className="input-label"
@@ -94,7 +125,6 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
                 }
               }}
               required
-              
             />
             <InputBase
               maxLength={5}
@@ -113,8 +143,6 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
                 }
               }}
             />
-
-           
           </div>
           <div className="input-column-row">
             <TextInput
@@ -224,6 +252,25 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
         </div>
       </div>
 
+      <div className="image-input-container">
+        <input
+          type="file"
+          id="cropImageInput"
+          onChange={handleImageChange}
+          required={formData.selectedCropImage ? false : true}
+        />
+
+        <div className="selected-image-preview">
+          {cropImage && cropImage.name && (
+            <img
+              src={URL.createObjectURL(cropImage)}
+              alt="Selected Crop"
+              style={{ width: "100%", maxWidth: "300px" }}
+            />
+          )}
+        </div>
+      </div>
+
       <Checkbox
         className="form-ack"
         label="I hereby confirm that all information provided by me is genuine and not intended to mislead."
@@ -232,7 +279,11 @@ const SellForm = ({ formData, setFormData, currentUser , handleSubmit }) => {
       />
 
       <div className="form-submit">
-        <button type="submit" className="form-submit-button" onSubmit={handleSubmit}>
+        <button
+          type="submit"
+          className="form-submit-button"
+          onSubmit={handleSubmit}
+        >
           Submit
         </button>
       </div>

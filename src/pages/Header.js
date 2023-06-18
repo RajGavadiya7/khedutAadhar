@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./css/Home.css";
 import { Link } from "react-router-dom";
-import ProfileButton from "../components/ProfileButton";
-// import Container from "react-bootstrap/Container";
-// import Nav from "react-bootstrap/Nav";
-// import Navbar from "react-bootstrap/Navbar";
+import ProfileButton from "../components/Profile/ProfileButton";
 import { Button  } from '@mantine/core';
-import MenuNavbar from "../components/MenuNavbar";
-// import Button from '@material-ui/core/Button';
+import MenuNavbar from "../components/HomePage/MenuNavbar";
 import {IconCircleArrowUp } from '@tabler/icons-react';
 import styled, { keyframes } from 'styled-components';
 
+
 export default function Header() {
 
-  
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
-
-  
 
   const scrollToTop = () => {
       window.scrollTo({
@@ -25,7 +18,6 @@ export default function Header() {
         behavior: 'smooth'
       });
   };
-  
   
   
   useEffect(() => {
@@ -48,8 +40,9 @@ export default function Header() {
       <div className="logo-area logo-bg-image">
         <div className="logo-container">
           <img
+            loading="lazy"
             className="logo-img"
-            src="./image/logo.svg"
+            src="https://krushi-aadhar.web.app/image/logo.svg"
             alt="Krushi-Aadhar"
           />
         </div>
@@ -72,10 +65,17 @@ export default function Header() {
                   <Link style={{textDecoration:'none'}} className="menu" to="/price">Daily Crop Price</Link>
                 </li>
                 <li>
-                  <Link style={{textDecoration:'none'}} className="menu" to="/buy_crop">Buy Crop</Link>
+                  <Link style={{textDecoration:'none'}} className="menu" to="/buy_crop" >Buy Crop</Link>
                 </li>
                 <li>
-                  <Link style={{textDecoration:'none' }} className="menu" to="/sell_crop">Sell Crop</Link>
+                  <Link  style={{textDecoration:'none' }} className="menu" to="/sell_crop">Sell Crop</Link>
+                </li>
+                <li>
+                  <Link 
+                    style={{textDecoration:'none'}} 
+                    className="menu" 
+                    to="/hireTractor"
+                    >Hire Tractor</Link>
                 </li>
                 <li>
                   <Link style={{textDecoration:'none'}} className="menu" to="/profile">Profile</Link>

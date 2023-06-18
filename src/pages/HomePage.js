@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import HomeCarousel from "../components/HomeCarousel";
-import Card from "react-bootstrap/Card";
+import HomeCarousel from "../components/HomePage/HomeCarousel";
 import "./css/HomePage.css";
 import { Accordion } from "@mantine/core";
 import {
@@ -11,11 +10,12 @@ import {
   Title,
   Button,
 } from "@mantine/core";
-// import { useAuth } from "../contexts/AuthContext";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import app from "../Firebase";
 import { v4 as uuidv4 } from "uuid";
-import HomeFeatures from "../components/HomeFeatures";
+import HomeFeatures from "../components/HomePage/HomeFeatures";
+import HowOrganicCard from "../components/HomePage/HowOrganicCard";
+
 
 const HomePage = () => {
   const [constactFormData, setContactFormData] = useState({
@@ -97,6 +97,26 @@ const HomePage = () => {
     },
   ];
 
+
+  const howOrganicData = [
+    {
+      title: "Technology",
+      image: "https://venturebeat.com/wp-content/uploads/2021/05/GettyImages-1248228512.jpg?fit=400%2C202&strip=all",
+      description: "Technology aids organic farming through advancements in precision agriculture, data analysis, and automation for improved productivity and sustainability."
+    },
+    {
+      title: "Vermicompost",
+      image: "https://img.freepik.com/premium-vector/cartoon-compost-worms-soil-organic-bio-wastes_8071-50264.jpg",
+      description: "Vermicompost is a nutrient-rich organic fertilizer and soil amendment produced by the process of composting organic waste materials using earthworms.",
+    },
+    {
+      title: "Biodiversity and ecological balance",
+      image: "https://www.news-reporter.com/wp-content/uploads/2023/05/Why-Biodiversity-Is-Essential-for-Sustainability-and-Ecological-Balance-696x418.jpeg",
+      description: "Biodiversity and ecological balance through practices that support a diverse range of plant and animal species, enhancing ecosystem health and resilience.",
+    },
+  ];
+
+
   // map all the faqData to Accordion.Item
   const faqItems = faqData.map((faq) => (
     <Accordion.Item
@@ -115,8 +135,8 @@ const HomePage = () => {
       <HomeCarousel />
 
       <div className="info-container">
-        <h3 className="info-container-title"> Krushi Aadhar </h3>
-        <h6 className="info-container-title">Aadhar of Indian Krushi</h6>
+        <div className="info-container-title"> Krushi Aadhar </div>
+        <h6 className="info-container-title2">Aadhar of Indian Krushi</h6>
         <div>
           <p className="info-container-body">
             Krushi Aadhar portal is a one stop solution for facilitating organic
@@ -126,59 +146,27 @@ const HomePage = () => {
           </p>
         </div>
       </div>
-
+      
+      
       <div className="features-container" style={{ backgroundColor: "white" }}>
         <HomeFeatures />
       </div>
 
-      <div className="card-container">
-        <Card className="card">
-          <Card.Img
-            className="card-img"
-            variant="top"
-            src="https://blog.isperm.co/content/images/2016/03/orange.jpg"
-          />
-          <Card.Body>
-            <Card.Title>Technology</Card.Title>
-            <Card.Text>
-              Technology aids organic farming through advancements in precision
-              agriculture, data analysis, and automation for improved
-              productivity and sustainability.
-            </Card.Text>
-          </Card.Body>
-        </Card>
 
-        <Card className="card">
-          <Card.Img
-            className="card-img"
-            variant="top"
-            src="https://img.freepik.com/premium-vector/cartoon-compost-worms-soil-organic-bio-wastes_8071-50264.jpg"
-          />
-          <Card.Body>
-            <Card.Title>Vermicompost</Card.Title>
-            <Card.Text>
-              Vermicompost is a nutrient-rich organic fertilizer and soil
-              amendment produced by the process of composting organic waste
-              materials using earthworms.
-            </Card.Text>
-          </Card.Body>
-        </Card>
+      <div className="card-container-wrapper">
 
-        <Card className="card">
-          <Card.Img
-            className="card-img"
-            variant="top"
-            src="https://www.news-reporter.com/wp-content/uploads/2023/05/Why-Biodiversity-Is-Essential-for-Sustainability-and-Ecological-Balance-696x418.jpeg"
-          />
-          <Card.Body>
-            <Card.Title>Biodiversity and ecological balance</Card.Title>
-            <Card.Text>
-              Biodiversity and ecological balance through practices that support
-              a diverse range of plant and animal species, enhancing ecosystem
-              health and resilience.
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <Title style={{lineHeight: 1,textAlign: "center", marginTop: '2rem'}} >
+          Revolutionary Approach to <span style={{backgroundColor:'rgba(89, 216, 47, 0.4)' , padding:'3px' , borderRadius:'5px'}} >Organic Farming</span>
+        </Title>
+        <p style={{textAlign:"center"}} className="card-container-body">
+          Discovering game-changing techniques and tools to revolutionize organic farming for better sustainability and yields.
+        </p>
+
+        <div className="card-container">
+          {howOrganicData.map((data) => (
+            <HowOrganicCard data={data} />
+          ))}
+        </div>
       </div>
 
       {/* FAQ and contact us both sections */}

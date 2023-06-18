@@ -12,6 +12,21 @@
     margin:1rem;
 }
 
+.selled-crop-image-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 50px; */
+}
+
+.selled-crop-image{
+    width: 100%;
+    max-height: 11rem;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
 
 .sellcard-row-1{
     display: grid;
@@ -105,6 +120,8 @@ color: #395B6E;
 
 
 @media screen and (max-width: 768px) {
+
+    
 
     .selled-crop-container{
         padding: 0.5rem;

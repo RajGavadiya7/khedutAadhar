@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./css/Sell.css";
 import { useAuth } from "../contexts/AuthContext";
-// import SellForm from "../components/SellForm";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  where,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
-
+import { getFirestore,collection,addDoc,query,where,getDocs,deleteDoc,doc,updateDoc} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import app from "../Firebase";
 import Button from "react-bootstrap/Button";
-// import Accordion from "react-bootstrap/Accordion";
-// import { Table, ScrollArea } from "@mantine/core";
-// import { v4 as uuidv4 } from 'uuid';
-import UserSelledCrop from "../components/UserSelledCrop";
+import UserSelledCrop from "../components/SellCrop/UserSelledCrop";
 import Modal from "react-bootstrap/Modal";
-// import styled from "styled-components";
-const SellForm = React.lazy(() => import("../components/SellForm"));
+import {getStorage, uploadBytes, ref , getDownloadURL , deleteObject } from "firebase/storage";
+const SellForm = React.lazy(() => import("../components/SellCrop/SellForm"));
+
+
+
+
 
 
 const Sell = () => {
@@ -31,6 +20,7 @@ const Sell = () => {
   const { currentUser } = useAuth();
   const db = getFirestore(app);
   const sellCropsRef = collection(db, "buyCropsList");
+  const storage = getStorage(app);
 
   // all react states
   const [userSelledCrops, setUserSelledCrops] = useState("");
@@ -41,6 +31,7 @@ const Sell = () => {
   const [showSellForm, setShowSellForm] = useState(false);
 
   const [formData, setFormData] = useState({ 
+    id: "",
     selectedCrop: "",
     selectedVariety: "",
     selectedQuantity: "",
@@ -52,7 +43,14 @@ const Sell = () => {
     selectedEmail: currentUser ? currentUser.email : "",
     selectedState: "",
     selectedDistrict: "",
+    selectedCropImage: "",
+    totalRating: 0,
+    totalReviews: 0,
   });
+
+  const [cropImage, setCropImage] = useState(null);
+
+
 
   // ----------------------------------- Fetch all data ---------------------- 
   const fetchUserData = async () => {
@@ -101,57 +99,170 @@ const Sell = () => {
 
 
   // --------------------------------------Update Data ---------------------------
+  // const handleOpenUpdateModal = (crop) => {
+  //   setUpdateFormData(crop);
+  //   setShowUpdateModal(true);
+  // };
+
+
+  // const handleUpdate = async (event) => {
+  //   event.preventDefault();
+  
+  //   const docRef = doc(db, "buyCropsList", updateFormData.id);
+  //   await updateDoc(docRef, updateFormData).catch((err) => {
+  //     console.log(err);
+  //   });
+
+  //   fetchUserData();
+  //   console.log("Data updated successfully");
+  //   setShowUpdateModal(false);
+     
+  // } 
+
+  const handleUploadImage = async (file) => {
+    const storageRef = ref(storage, `cropImages/${file.name}+${uuidv4()}`);
+    console.log(storageRef);
+    await uploadBytes(storageRef, file);
+    const imageUrl = await getDownloadURL(storageRef);
+    return imageUrl;
+  };
+  
+
+  const extractImageFileName = (imageUrl) => {
+    const startIndex = imageUrl.indexOf("o/") + 2;
+    const endIndex = imageUrl.indexOf("?alt=media");
+    const path = imageUrl.substring(startIndex, endIndex);
+    return path.replace(/%2F/g, "/").replace(/%2B/g, "+").replace(/%20/g, " ");
+  };
+
+  
+  const handleDeleteImage = async (imageDownloadUrl) => {
+
+    try{
+    const imageUrl = extractImageFileName(imageDownloadUrl);
+    console.log(imageUrl);
+
+    const imageRef = ref(storage, imageUrl);
+    
+    await deleteObject(imageRef);
+
+    console.log("image deleted successfully");
+    }
+    catch(err){
+      console.log(err);
+      console.log("Error while deleting image");
+    }
+  };
+  
   const handleOpenUpdateModal = (crop) => {
     setUpdateFormData(crop);
     setShowUpdateModal(true);
   };
-
-
+  
   const handleUpdate = async (event) => {
     event.preventDefault();
-  
-    const docRef = doc(db, "buyCropsList", updateFormData.id);
-    await updateDoc(docRef, updateFormData).catch((err) => {
-      console.log(err);
-    });
-
-    fetchUserData();
-    console.log("Data updated successfully");
     setShowUpdateModal(false);
-     
-  } 
+  
+    try {
+      if (cropImage && cropImage.name !== updateFormData.selectedCropImage) {
+        // Delete the old image from storage if a new image is selected
+        await handleDeleteImage(updateFormData.selectedCropImage);
+  
+        // Upload the new image
+        const imageUrl = await handleUploadImage(cropImage);
+  
+        // Update the form data with the new image URL
+        const updatedFormData = {
+          ...updateFormData,
+          selectedCropImage: imageUrl,
+        };
+  
+        // Update the document in Firebase Firestore
+        const docRef = doc(db, "buyCropsList", updateFormData.id);
+        await updateDoc(docRef, updatedFormData);
+  
+        // Fetch user data and perform other actions
+        fetchUserData();
+        console.log("Data updated successfully");
+        setShowUpdateModal(false);
+        setCropImage(null);
+      } else {
+        // If no new image is selected, simply update the document with existing data
+        const docRef = doc(db, "buyCropsList", updateFormData.id);
+        await updateDoc(docRef, updateFormData);
+  
+        // Fetch user data and perform other actions
+        fetchUserData();
+        console.log("Data updated successfully");
+        setShowUpdateModal(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
 
   // ---------------------------------------Submit new form --------------------------- 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     setShowSellForm(false);
-    await addDoc(sellCropsRef , formData).catch((err) => {console.log(err)});
-    fetchUserData();
-    console.log(formData);
+    setCropImage(null);
+    
+  
+    try {
+      // Upload image to Firebase Storage
+      const imageUrl = await handleUploadImage(cropImage);
+  
+      const docRef = await addDoc(sellCropsRef, {
+        ...formData,
+        selectedCropImage: imageUrl,
+      });
+  
+      
+      await updateDoc(doc(sellCropsRef, docRef.id), {
+        id: docRef.id,
+      });
 
-    // clear form data
-    setFormData({
-      selectedCrop: "",
-      selectedVariety: "",
-      selectedQuantity: "",
-      selectedPrice: "",
-      selectedCertification: "",
-      selectedSeason: "Kharif (JUN-NOV)",
-      selectedSellerName: "",
-      selectedMobileNumber: "",
-      selectedState: "",
-      selectedDistrict: "",
-      selectedEmail: currentUser ?  currentUser.email : ""
-    });
-    alert("Form submitted");
+      const updatedFormData = {
+        ...formData,
+        selectedCropImage: imageUrl,
+        id: docRef.id,
+      };
+  
+  
+      // Fetch user data and perform other actions
+      fetchUserData();
+      console.log(updatedFormData);
+      setFormData({
+        selectedCrop: "",
+        selectedVariety: "",
+        selectedQuantity: "",
+        selectedPrice: "",
+        selectedCertification: "",
+        selectedSeason: "Kharif (JUN-NOV)",
+        selectedSellerName: "",
+        selectedMobileNumber: "",
+        selectedState: "",
+        selectedDistrict: "",
+        selectedEmail: currentUser ? currentUser.email : "",
+        selectedCropImage: "",
+        totalRating: 0,
+        totalReviews: 0,
+      });
+      alert("Form submitted");
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
 
 
   useEffect(() => {
     fetchUserData();
-  },   []  );
+  } , []);
 
 
 
@@ -185,7 +296,7 @@ const Sell = () => {
 
               <Modal
                 show={showUpdateModal}
-                onHide={() => setShowUpdateModal(false)}
+                onHide={() => { setShowUpdateModal(false); setCropImage(null);}}
                 dialogClassName="modal-90w"
                 size="xl"
                 backdrop="static"
@@ -204,6 +315,8 @@ const Sell = () => {
                     setFormData={setUpdateFormData}
                     currentUser={currentUser}
                     handleSubmit={handleUpdate}
+                    cropImage={cropImage}
+                    setCropImage={setCropImage}
                     // dialogClassName="modal-100w"
                   />
                 </Modal.Body>
@@ -255,11 +368,6 @@ const Sell = () => {
 
 
 
-
-
-
-
-
       <div className="form-container">
         {currentUser ? (
           <div className="sell-crop-button-container">
@@ -269,7 +377,7 @@ const Sell = () => {
 
             <Modal
                 show={showSellForm}
-                onHide={() => setShowSellForm(false)}
+                onHide={() => {setShowSellForm(false); setCropImage(null);}}
                 dialogClassName="modal-90w"
                 size="xl"
                 backdrop="static"
@@ -286,6 +394,8 @@ const Sell = () => {
               setFormData={setFormData}
               currentUser={currentUser}
               handleSubmit={handleSubmit}
+              cropImage={cropImage}
+              setCropImage={setCropImage}
             />
             </Modal.Body>
             </Modal>

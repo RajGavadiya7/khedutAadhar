@@ -5,6 +5,9 @@ import "./UserSelledCrop.css";
 const UserSelledCrop = ({ crop, handleOpenUpdateModal, deleteData }) => {
   return (
     <div className="selled-crop-container">
+      <div className="selled-crop-image-container">
+          <img className="selled-crop-image" src={crop.selectedCropImage} alt="Selected Crop" />
+      </div>
       <div className="sellcard-row-1">
         <div className="sellcard-row-1-col">            
             <div className="selled-crop-name">{crop.selectedCrop}</div>

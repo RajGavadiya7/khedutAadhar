@@ -2,8 +2,9 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { Burger } from '@mantine/core';
 
 export default function BasicMenu() {
 
@@ -25,9 +26,7 @@ export default function BasicMenu() {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
-                <GiHamburgerMenu
-                    style={{ width: "2rem", height: "2rem", color: "white" }}
-                />
+                <Burger color="white" />
             </Button>
             <Menu
                 id="basic-menu"
@@ -62,6 +61,14 @@ export default function BasicMenu() {
                         style={{ textDecoration: "none", color: "green" }}
                     >
                         Sell Crop
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <Link
+                        to="/hireTractor"
+                        style={{ textDecoration: "none", color: "green" }}
+                    >
+                        Hire Tractor
                     </Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>

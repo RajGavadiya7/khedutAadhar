@@ -1,5 +1,4 @@
 import {
-  Image,
   Text,
   Container,
   ThemeIcon,
@@ -12,10 +11,10 @@ import {
 } from "@mantine/core";
 
 import { Link } from "react-router-dom";
-import buyGif from '../data/FeaturesGif/buy.gif';
-import sellGif from '../data/FeaturesGif/sell.gif';
-import tractorGif from '../data/FeaturesGif/tractor.gif';
-import dailyCropPrice from "../data/FeaturesGif/dailyCropPrice.svg"
+import buyGif from '../../data/FeaturesGif/buy.gif';
+import sellGif from '../../data/FeaturesGif/sell.gif';
+import tractorGif from '../../data/FeaturesGif/tractor.gif';
+import dailyCropPrice from "../../data/FeaturesGif/dailyCropPrice.svg"
 
 
 // import Images from "../data/HomeFeaturesImages";
@@ -91,8 +90,6 @@ const useStyles = createStyles((theme) => ({
 const HomeFeatures = () => {
 
   const IMAGES = { dailyCropPrice ,buyGif, sellGif, tractorGif };
-  const supTitle = "Features";
-  const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.";
                        
 
   const data = [
@@ -145,9 +142,8 @@ const HomeFeatures = () => {
         size={60}
         radius="md"
       >
-        <img src={IMAGES[item.image]} className={classes.imageGif} />
-        
-        {/* <Image src={IMAGES[item.image]}  /> */}
+        <img src={IMAGES[item.image]} className={classes.imageGif} alt={item.title} />
+      
       </ThemeIcon>
 
       <div>
