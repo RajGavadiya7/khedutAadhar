@@ -4,7 +4,8 @@ export default function TractorHire() {
   return (
 
     <div>
-        
+
+      Hello tractor hire
 
     </div>
   )

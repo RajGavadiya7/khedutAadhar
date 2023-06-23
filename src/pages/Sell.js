@@ -8,8 +8,7 @@ import Button from "react-bootstrap/Button";
 import UserSelledCrop from "../components/SellCrop/UserSelledCrop";
 import Modal from "react-bootstrap/Modal";
 import {getStorage, uploadBytes, ref , getDownloadURL , deleteObject } from "firebase/storage";
-const SellForm = React.lazy(() => import("../components/SellCrop/SellForm"));
-
+import SellForm from "../components/SellCrop/SellForm";
 
 
 
@@ -270,6 +269,46 @@ const Sell = () => {
     <div className="sell-page">
       <p className="form-heading">Let's step together to Organic Farming</p>
 
+      <div className="form-container">
+        {currentUser ? (
+          <div className="sell-crop-button-container">
+            <button className="sellcrop-button" onClick={() => setShowSellForm(true)}>
+              Sell Crops
+            </button>
+
+            <Modal
+                show={showSellForm}
+                onHide={() => {setShowSellForm(false); setCropImage(null);}}
+                dialogClassName="modal-90w"
+                size="xl"
+                backdrop="static"
+                aria-labelledby="update-modal-title"
+            >
+            <Modal.Header closeButton>
+                <Modal.Title>Sell Crops</Modal.Title>
+            </Modal.Header>
+            <Modal.Body
+                style={{ display: "flex", justifyContent: "center" }}
+            >
+            <SellForm
+              formData={formData}
+              setFormData={setFormData}
+              currentUser={currentUser}
+              handleSubmit={handleSubmit}
+              cropImage={cropImage}
+              setCropImage={setCropImage}
+            />
+            </Modal.Body>
+            </Modal>
+          </ div>
+        ) : (
+          <div className="form-login">
+            <p className="form-login-text">Please login to sell crops</p>
+          </div>
+        )}
+      </div>
+
+
       <div className="your-crops-container">
         <div className="your-crops-header">
           <p className="your-crops-heading">Your Crops</p>
@@ -368,44 +407,7 @@ const Sell = () => {
 
 
 
-      <div className="form-container">
-        {currentUser ? (
-          <div className="sell-crop-button-container">
-            <Button variant="primary" onClick={() => setShowSellForm(true)}>
-              Sell Crops
-            </Button>
-
-            <Modal
-                show={showSellForm}
-                onHide={() => {setShowSellForm(false); setCropImage(null);}}
-                dialogClassName="modal-90w"
-                size="xl"
-                backdrop="static"
-                aria-labelledby="update-modal-title"
-            >
-            <Modal.Header closeButton>
-                <Modal.Title>Sell Crops</Modal.Title>
-            </Modal.Header>
-            <Modal.Body
-                style={{ display: "flex", justifyContent: "center" }}
-            >
-            <SellForm
-              formData={formData}
-              setFormData={setFormData}
-              currentUser={currentUser}
-              handleSubmit={handleSubmit}
-              cropImage={cropImage}
-              setCropImage={setCropImage}
-            />
-            </Modal.Body>
-            </Modal>
-          </ div>
-        ) : (
-          <div className="form-login">
-            <p className="form-login-text">Please login to sell crops</p>
-          </div>
-        )}
-      </div>
+      
       <div className="form-guide-container"></div>
     </div>
   );

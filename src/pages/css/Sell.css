@@ -13,6 +13,27 @@
 
 }
 
+
+
+.sellcrop-button{
+    background: transparent;
+    box-sizing: border-box;
+    border-radius: 0.6rem;
+    align-self: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 20px;
+    padding: 20px 40px;
+    text-align: center;
+    color: rgb(70, 163, 251);
+    font-family: Pangolin;
+    cursor: pointer;
+    border: 2px solid rgb(107, 241, 111);  
+    background-color: rgb(25, 89, 89);
+  }
+  
+
+
 .form-container{
     display: flex;
     flex-direction: column;

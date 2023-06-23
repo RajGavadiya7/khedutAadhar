@@ -181,14 +181,15 @@ const Buy = () => {
 
   return (
     <div className="buy-container">
-      <Marquee>
+      
+      {/* <Marquee>
         <MarqueeGroup>
           {CropsImage.map((image) => (
             <Image2 key={uuidv4()} src={image} />
           ))}
           <Image src={TractorGif} />
         </MarqueeGroup>
-      </Marquee>
+      </Marquee> */}
 
       <br />
 
@@ -222,7 +223,6 @@ const Buy = () => {
 
         <div className="search-crop-body">
           <div className="crop-filter-container-mobile">
-            <div className="crop-sort"></div>
             <form className="crop-filter">
               <Select
                 className="filter-input"
@@ -289,7 +289,7 @@ const Buy = () => {
             <div className="buycropcard-container">
             { showData.length === 0 && <h1 style={{textAlign: 'center' , marginTop: '2rem'}}>No crops available</h1>}
              { showData
-              .slice((currentPage - 1) * 5, currentPage * 5)
+              .slice((currentPage - 1) * 10, currentPage * 10)
               .map((crop) => {
                 return (  
                     <BuyCropCard crop={crop} key={uuidv4()} />
@@ -303,7 +303,7 @@ const Buy = () => {
               <Pagination
                 className="pagination"
                 // total={totalPages}
-                total={Math.ceil(showData.length / 5)}
+                total={Math.ceil(showData.length / 10)}
                 color="orange"
                 radius="md"
                 value={currentPage}

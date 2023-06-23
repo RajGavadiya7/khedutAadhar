@@ -37,7 +37,7 @@ const App = () => {
   return (
     <Router>
       <Header  style={{zIndex:'1000'}}/>
-      <Suspense fallback={<LoadingComponent />}>
+      {/* <Suspense fallback={<LoadingComponent />}> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/buy_crop" element={<Buy />}  />
@@ -52,7 +52,7 @@ const App = () => {
           <Route path="*" element={<div style={{backgroundColor:"white"}}>404 Page Not Found</div>} />
           
         </Routes>
-      </Suspense>
+      {/* </Suspense> */}
     </Router>
   );
 };

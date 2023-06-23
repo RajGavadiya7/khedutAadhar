@@ -3,13 +3,14 @@
 .buy-crop-container {
     display: grid;
     grid-template-rows: 2fr 1fr;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 1rem;
     max-width: 25rem;
     width: 100%;
     min-height: 12rem;  
     margin:0.5rem;
+    cursor: pointer;
 }
 
 .buy-crop-image-container{

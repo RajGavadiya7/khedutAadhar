@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
-// import { Link, redirect, useNavigate } from "react-router-dom"
 import { auth } from "../../Firebase"
 
 export default function Signup({ setLogOrSign}) {

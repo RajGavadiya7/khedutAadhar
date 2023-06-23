@@ -21,7 +21,7 @@
 
 .search-crop-body {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 5fr 1fr;
   grid-gap: 2rem;
   /* margin: 2rem 0; */
 }
@@ -156,7 +156,7 @@
     height: 100%;
     justify-content: space-between;
     background: #ffffff;
-    border-radius: 19px;
+    border-radius: 5px;
     box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1);
 
 }
@@ -178,6 +178,7 @@
 
 }
 
+
 .crop-filter-container-mobile{
     display: flex;
     flex-direction: column;
@@ -187,7 +188,7 @@
     width: 100%;
     padding: 1rem;
     background: #ffffff;
-    border-radius: 19px;
+    border-radius: 5px;
     box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1);
 }
 

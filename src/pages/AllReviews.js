@@ -7,29 +7,22 @@ import {
   where,
   getDocs,
   getFirestore,
-  limit,
 } from "firebase/firestore";
 import { Table } from "@mantine/core";
 import "./css/CropPage.css";
 
-import { Button, Rating, InputBase, Textarea } from "@mantine/core";
-import {v4 as uuidv4} from "uuid";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { Rating } from "@mantine/core";
+import { v4 as uuidv4 } from "uuid";
+// import { useAuth } from "../contexts/AuthContext";
 
-export  default function AllReviews() {
+export default function AllReviews() {
+  // const { currentUser } = useAuth();
+  const { cropId } = useParams();
 
-
-
-    const { currentUser } = useAuth();
-    const { cropId } = useParams();
-
-    const db = getFirestore(app);
-    const sellCropsRef = collection(db, "buyCropsList");
-    const [cropDetails, setCropDetails] = useState({});   
-    const [allreviews, setAllReviews] = useState([]);
-
- 
+  const db = getFirestore(app);
+  const sellCropsRef = collection(db, "buyCropsList");
+  const [cropDetails, setCropDetails] = useState({});
+  const [allreviews, setAllReviews] = useState([]);
 
   const fetCropDetails = async () => {
     const q1 = query(sellCropsRef, where("id", "==", cropId));
@@ -39,7 +32,10 @@ export  default function AllReviews() {
   };
 
   const fetAllReviews = async () => {
-    const q2 = query( collection(db, "cropReviews"), where("cropId", "==", cropId)  );
+    const q2 = query(
+      collection(db, "cropReviews"),
+      where("cropId", "==", cropId)
+    );
     try {
       const querySnapshot = await getDocs(q2);
       querySnapshot.docs.map((doc) => {
@@ -51,7 +47,7 @@ export  default function AllReviews() {
     } catch (error) {
       console.log("Error getting documents: ", error);
     }
-    };
+  };
 
   useEffect(() => {
     fetAllReviews();
@@ -132,38 +128,32 @@ export  default function AllReviews() {
 
           {/* review card */}
           <div className="reviewcard-container-wrapper">
-          {allreviews.map((review) => (
-            <div key={uuidv4()} className="reviewcard-container">
-              <div className="reviewcard-user">
-                <span className="reviewcard-user-text">
+            {allreviews.map((review) => (
+              <div key={uuidv4()} className="reviewcard-container">
+                <div className="reviewcard-user">
+                  <span className="reviewcard-user-text">
                     {review.userName}
-                </span>
-              </div>
+                  </span>
+                </div>
 
-              <hr style={{margin:'0rem' , padding:"0rem"}} />
-              <div className="reviewcard-heading">
-                <span className="reviewcard-heading-text">
-                  {review.reviewTitle}
-                </span>
-                <Rating value={review.rating} color="orange" />
-              </div>
+                <hr style={{ margin: "0rem", padding: "0rem" }} />
+                <div className="reviewcard-heading">
+                  <span className="reviewcard-heading-text">
+                    {review.reviewTitle}
+                  </span>
+                  <Rating value={review.rating} color="orange" />
+                </div>
 
-              <div className="reviewcard-description">
-                <span className="reviewcard-description-text">
-                  {review.reviewDescription}
-                </span>
+                <div className="reviewcard-description">
+                  <span className="reviewcard-description-text">
+                    {review.reviewDescription}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}   
+            ))}
           </div>
-
-            
-                
-          
         </div>
-
       </div>
     </div>
   );
-};
-
+}

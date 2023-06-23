@@ -17,9 +17,6 @@ import tractorGif from '../../data/FeaturesGif/tractor.gif';
 import dailyCropPrice from "../../data/FeaturesGif/dailyCropPrice.svg"
 
 
-// import Images from "../data/HomeFeaturesImages";
-// import { createUseStyles } from "react-jss";
-
 const useStyles = createStyles((theme) => ({
   wrapper: {
     paddingTop: rem(80),

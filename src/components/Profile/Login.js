@@ -53,7 +53,7 @@ export default function Login({ setLogOrSign }) {
 
   return (
     <>
-      <Card>
+      <Card style={{height:"auto"}}>
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -74,7 +74,7 @@ export default function Login({ setLogOrSign }) {
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
         </Card.Body>
-        <div
+        <div     
           style={{
             justifyContent: "center",
             alignItems: "center",
@@ -86,11 +86,14 @@ export default function Login({ setLogOrSign }) {
         >
           <GoogleButton className="m-2" onClick={handleGoogleSignIn} />
         </div>
-      </Card>
-      <div className="w-100 text-center mt-2">
+
+        <div className="w-100 text-center mt-2 mb-2">
         Need an account?
         <Button onClick={handleSignup}>Sign Up</Button>
       </div>
+
+      </Card>
+      
     </>
   );
 }
