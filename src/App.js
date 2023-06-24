@@ -39,23 +39,20 @@ const App = () => {
     <Router>
 
       <Helmet>
-        <title>Krushi Aadhar</title>
-        <meta name="description" content="Krushi Aadhar is a platform for farmers to sell their crops directly to the buyers. It also provides a platform for farmers to hire tractors." />
-        <meta
-          name="keywords"
-          content="Khedut Aadhar, Khedut, Aadhar, Khedut Aadhar App, Khedut Aadhar Website, Khedut Aadhar Web App, Khedut Aadhar Web Application, Khedut Aadhar, Buy Organic Crops, Sell Crops, Hire Tractor, Hire Farming Equipment, Farming Equipment, Hire Tractor, Tractor, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application, Farming, Farming App, Farming Website, Farming Web App , Farming Web Application"
-        />
-        <meta name="author" content="Khedut Aadhar" />
+        <title>Krushi Aadhar </title>
+        <meta name="description" content="Krushi Aadhar is a platform that enables farmers to sell their crops directly to buyers and provides a platform for hiring tractors." />
+        <meta name="keywords" content="Krushi Aadhar, Farmers, Sell Crops, Buy Organic Crops, Hire Tractor, Farming Equipment, Agricultural Platform, Home Page, Crop Details, Reviews, Daily Prices, User Profile, Tractor Hire" />
+        <meta name="author" content="Krushi Aadhar" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
-        <meta name="canonical" content="https://krushiaadhar.me/" />
-        <meta property="og:title" content="Khedut Aadhar" />
-        <meta property="og:description" content="Khedut Aadhar is a platform for farmers to sell their crops directly to the buyers. It also provides a platform for farmers to hire tractors." />
+        <link rel="canonical" href="https://krushiaadhar.me/" />
+        <meta property="og:title" content="Krushi Aadhar - Platform for Farmers to Sell Crops and Hire Tractors" />
+        <meta property="og:description" content="Krushi Aadhar is a platform that enables farmers to sell their crops directly to buyers and provides a platform for hiring tractors." />
         <meta property="og:url" content="https://krushiaadhar.me/" />
-        <meta property="og:site_name" content="Khedut Aadhar" />
+        <meta property="og:site_name" content="Krushi Aadhar" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://krushiaadhar.me/image/logo.svg" />
-        <meta property="og:image:alt" content="Khedut Aadhar" />
+        <meta property="og:image:alt" content="Krushi Aadhar Logo" />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
         
