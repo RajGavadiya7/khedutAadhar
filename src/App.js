@@ -1,4 +1,4 @@
-import React, {  Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 import Header from './pages/Header';
@@ -17,21 +17,21 @@ const AllReviews = loadable(() => import('./pages/AllReviews'));
 
 
 
-const LoadingComponent = () => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: 'calc(100vh - 60px)',
+// const LoadingComponent = () => {
+//   return (
+//     <div
+//       style={{
+//         display: 'flex',
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         minHeight: 'calc(100vh - 60px)',
         
-      }}
-    >
-      <img  style={{maxHeight:'10rem'}} src={LoadingImg} alt="Loading" />
-    </div>
-  );
-};
+//       }}
+//     >
+//       <img  style={{maxHeight:'10rem'}} src={LoadingImg} alt="Loading" />
+//     </div>
+//   );
+// };
 
 const App = () => {
 

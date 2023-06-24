@@ -9,7 +9,7 @@ import {
   Pagination,
 } from "@mantine/core";
 import { IconSearch, IconArrowRight } from "@tabler/icons-react";
-import TractorGif from "./css/tractor.gif";
+// import TractorGif from "./css/tractor.gif";
 import styled, { keyframes } from "styled-components";
 import crop1 from "../data/CropsImage/crop1.svg";
 import crop2 from "../data/CropsImage/crop2.svg";
@@ -26,7 +26,7 @@ import {
 } from "firebase/firestore";
 import app from "../Firebase";
 import loadable from "@loadable/component";
-import { Navigate , useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 const  BuyCropCard = loadable(() => import("../components/BuyCrop/BuyCropCard"));
@@ -34,9 +34,9 @@ const  BuyCropCard = loadable(() => import("../components/BuyCrop/BuyCropCard"))
 
 const Buy = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const CropsImage = [crop1, crop2, crop3, crop4, crop5, crop6, crop7];
+  // const CropsImage = [crop1, crop2, crop3, crop4, crop5, crop6, crop7];
   const db = getFirestore(app);
   const sellCropsRef = collection(db, "buyCropsList");
 

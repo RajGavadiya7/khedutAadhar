@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import "./BuyCropCard.css";
 import { Link } from "react-router-dom";
-import {Loader , Rating , Button} from "@mantine/core"
+import {Loader , Rating } from "@mantine/core"
 import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 const BuyCropCard = ({ crop }) => {
 
