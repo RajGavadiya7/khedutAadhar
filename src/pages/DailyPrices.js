@@ -6,6 +6,8 @@ import "./css/Daily_price.css";
 import CardForm from "../components/DailyCropPrice/CardForm";
 import { StateList } from "../data/StateList";
 import {v4 as uuidv4} from "uuid";
+import { Helmet } from "react-helmet-async";
+
 
 export default function DailyPrices() {
 
@@ -21,12 +23,14 @@ export default function DailyPrices() {
 
   const getData = async () => {
     try {
-      const response = await fetch(url);
 
-      const data = await response.json();
-      setData(data.records);
-      console.log(data.records);
-      console.log(state, district);
+      await fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data.records);
+        });
+        
+
     } catch (error) {
       console.log(error);
     }
@@ -61,6 +65,26 @@ export default function DailyPrices() {
 
   return (
     <div>
+
+      <Helmet>
+        <title>Daily Crop Price</title>
+        <meta 
+          name="description"
+          content="Daily crop prices from all over India. Get the latest crop prices from your state and district."
+        />
+        <link rel="canonical" href="/price" />
+        <meta name="keywords" content="Daily Crop Price, Crop Price, Crop Price in India, Crop Price in any state, district or market" />
+        
+        <meta property="og:title" content="Daily Crop Price" />
+        <meta property="og:description" content="Daily crop prices from all over India. Get the latest crop prices from your state and district." />
+        <meta property="og:url" content="https://krushiaadhar.me/price" />
+        <meta property="og:type" content="website" />
+        
+
+      </Helmet>
+
+
+
       <form className="commodity-form">
         <div className="form-group">
           <label label="state">State</label>
@@ -102,7 +126,7 @@ export default function DailyPrices() {
 
       {/* Toogle Button of Card and Table */}
       <div className="daily-crop-price">
-        <h1> Daily Crop Price </h1>
+        <h2> Daily Crop Price </h2>
         <button onClick={tableOrCard} type="submit" className="toogle-btn">
           {displayType === "card" ? (
             <img

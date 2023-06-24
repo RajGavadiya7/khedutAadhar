@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 import React, { useState } from "react";
 import HomeCarousel from "../components/HomePage/HomeCarousel";
 import "./css/HomePage.css";
@@ -132,6 +134,20 @@ const HomePage = () => {
 
   return (
     <div>
+      <Helmet>
+
+        <title>Home | Krushi Aadhar</title>
+        <meta
+          name="description"
+          content="Krushi Aadhar is a one stop solution for facilitating organic farmers to sell their organic produce and promoting organic farming and its benefits."
+        />
+        <link rel='canonical' href='/' />
+        <meta property='og:title' content='Krushi Aadhar' />
+        <meta property='og:description' content='Krushi Aadhar is a one stop solution for facilitating organic farmers to sell their organic produce and promoting organic farming and its benefits.' />
+
+      
+      </Helmet>
+
       <HomeCarousel />
 
       <div className="info-container">
@@ -194,7 +210,7 @@ const HomePage = () => {
         </div>
 
         <div className="contactus-container">
-          <form className="contactus-form">
+          <form type="submit" className="contactus-form">
             <Title
               order={2}
               size="h3"
@@ -257,7 +273,7 @@ const HomePage = () => {
             />
 
             <Group position="center" mt="xl">
-              <Button onClick={handleContactUsSubmit} type="submit" size="md">
+              <Button onSubmit={handleContactUsSubmit} type="submit" size="md">
                 Send message
               </Button>
             </Group>
