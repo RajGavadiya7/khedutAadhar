@@ -134,17 +134,20 @@ const HomePage = () => {
 
   return (
     <div>
-      <Helmet>
 
+      <Helmet>
         <title>Home | Krushi Aadhar</title>
         <meta
           name="description"
-          content="Krushi Aadhar is a one stop solution for facilitating organic farmers to sell their organic produce and promoting organic farming and its benefits."
+          content="Krushi Aadhar: Empowering organic farmers with fair trade, crop management tools, and daily price updates for buying and selling crops at optimal prices. Simplifying tractor hiring and rental services for enhanced agricultural efficiency. Promoting organic farming and its advantages for sustainable agriculture."
         />
+        <link rel="icon" href="https://krushiaadhar.me/logo.svg" />
+        <meta name="keywords" content="Krushi Aadhar, organic farming, sustainable agriculture, fair trade, crop management, crop prices, farmer empowerment, tractor hiring, agricultural solutions, organic produce, farming technology, agricultural marketplace, crop buying and selling, agricultural resources, farming tools, organic farming benefits, Sell Crops, Buy Organic Crops, Hire Tractor, Farming Equipment, Agricultural Platform" />
+        <meta name="author" content="Krushi Aadhar" />
+        <meta name="robots" content="index, follow" />
         <link rel='canonical' href='/' />
         <meta property='og:title' content='Krushi Aadhar' />
-        <meta property='og:description' content='Krushi Aadhar is a one stop solution for facilitating organic farmers to sell their organic produce and promoting organic farming and its benefits.' />
-
+        <meta property='og:description' content='Krushi Aadhar is a comprehensive platform that empowers organic farmers by providing them with a convenient solution to sell their organic produce at fair prices. Additionally, it facilitates farmers in buying crops at reasonable rates, offering services such as tractor hiring or renting. Farmers can also stay updated with daily crop prices, enabling them to effectively manage their crops and make informed decisions. With Krushi Aadhar, organic farmers can access a range of tools and resources to support their farming practices and promote the benefits of organic agriculture.' />
       
       </Helmet>
 

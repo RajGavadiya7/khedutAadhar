@@ -8,6 +8,7 @@ import { StateList } from "../data/StateList";
 import {v4 as uuidv4} from "uuid";
 import { Helmet } from "react-helmet-async";
 
+import axios from "axios";
 
 export default function DailyPrices() {
 
@@ -19,21 +20,21 @@ export default function DailyPrices() {
   const key = process.env.REACT_APP_API_KEY;
 
 
-  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${key}&format=json&limit=10000&filters%5Bstate%5D=${state}&filters%5Bdistrict%5D=${district}`;
+
+
+  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${key}&format=json&filters%5Bstate%5D=${state}&filters%5Bdistrict%5D=${district}&limit=10000`;
 
   const getData = async () => {
     try {
 
-      await fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          setData(data.records);
-        });
-        
-
+      const res = await axios.get(url);
+      setData(res.data.records);
+      console.log(res.data.records);
+      
     } catch (error) {
       console.log(error);
     }
+  
   };
 
   useState(() => {
