@@ -55,8 +55,6 @@ const HomePage = () => {
       subject: "",
       message: "",
     });
-
-    // console.log(constactFormData);
   };
 
   const faqData = [
@@ -136,6 +134,8 @@ const HomePage = () => {
     <div>
 
       <Helmet>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <title>Home | Krushi Aadhar</title>
         <meta
           name="description"
@@ -154,8 +154,8 @@ const HomePage = () => {
       <HomeCarousel />
 
       <div className="info-container">
-        <div className="info-container-title"> Krushi Aadhar </div>
-        <h6 className="info-container-title2">Aadhar of Indian Krushi</h6>
+        <h1 className="info-container-title"> Krushi Aadhar </h1>
+        <h2 className="info-container-title2">Aadhar of Indian Krushi</h2>
         <div>
           <p className="info-container-body">
             Krushi Aadhar portal is a one stop solution for facilitating organic
@@ -213,7 +213,7 @@ const HomePage = () => {
         </div>
 
         <div className="contactus-container">
-          <form type="submit" className="contactus-form">
+          <form className="contactus-form">
             <Title
               order={2}
               size="h3"
@@ -275,11 +275,11 @@ const HomePage = () => {
               onChange={handleContactUsChange}
             />
 
-            <Group position="center" mt="xl">
-              <Button onSubmit={handleContactUsSubmit} type="submit" size="md">
+            {/* <Group position="center" mt="xl"> */}
+              <Button onClick={handleContactUsSubmit} type="submit" size="md">
                 Send message
               </Button>
-            </Group>
+            {/* </Group> */}
           </form>
         </div>
       </div>

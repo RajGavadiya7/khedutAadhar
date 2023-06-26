@@ -41,6 +41,7 @@ const CardForm =  ({ data }) => {
             justify-content: space-evenly;
             align-items: center;
             margin: 0.5rem;
+            
           }
 
           .pricecard-container {
