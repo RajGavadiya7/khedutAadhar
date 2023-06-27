@@ -12,7 +12,7 @@ import {
   Title,
   Button,
 } from "@mantine/core";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc,serverTimestamp } from "firebase/firestore";
 import app from "../Firebase";
 import { v4 as uuidv4 } from "uuid";
 import HomeFeatures from "../components/HomePage/HomeFeatures";
@@ -25,13 +25,21 @@ const HomePage = () => {
     email: "",
     subject: "",
     message: "",
+    timestamp: "",
   });
   const db = getFirestore(app);
   const contactUsCollectionRef = collection(db, "contactUs");
 
   const createContactUs = async (contactUsData) => {
     try {
+
+      // Add server-side timestamp
+
+      contactUsData.timestamp = serverTimestamp();
+
+      console.log(contactUsData);
       await addDoc(contactUsCollectionRef, contactUsData);
+        alert("Successfully sent");
     } catch (err) {
       console.error(err);
     }
@@ -141,7 +149,7 @@ const HomePage = () => {
           name="description"
           content="Krushi Aadhar: Empowering organic farmers with fair trade, crop management tools, and daily price updates for buying and selling crops at optimal prices. Simplifying tractor hiring and rental services for enhanced agricultural efficiency. Promoting organic farming and its advantages for sustainable agriculture."
         />
-        <link rel="icon" href="https://krushiaadhar.me/logo.svg" />
+        <link rel="icon" href="/favicon.png" />
         <meta name="keywords" content="Krushi Aadhar, organic farming, sustainable agriculture, fair trade, crop management, crop prices, farmer empowerment, tractor hiring, agricultural solutions, organic produce, farming technology, agricultural marketplace, crop buying and selling, agricultural resources, farming tools, organic farming benefits, Sell Crops, Buy Organic Crops, Hire Tractor, Farming Equipment, Agricultural Platform" />
         <meta name="author" content="Krushi Aadhar" />
         <meta name="robots" content="index, follow" />
@@ -213,7 +221,7 @@ const HomePage = () => {
         </div>
 
         <div className="contactus-container">
-          <form className="contactus-form">
+          <form className="contactus-form" onSubmit={handleContactUsSubmit} >
             <Title
               order={2}
               size="h3"
@@ -276,7 +284,7 @@ const HomePage = () => {
             />
 
             {/* <Group position="center" mt="xl"> */}
-              <Button onClick={handleContactUsSubmit} type="submit" size="md">
+              <Button onSubmit={handleContactUsSubmit} type="submit" size="md">
                 Send message
               </Button>
             {/* </Group> */}

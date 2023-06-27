@@ -197,10 +197,7 @@ const Buy = () => {
 
       <div className="search-crop">
         <div className="buy-form">
-          <Button variant="light" color="red" onClick={handleResetAll}>
-            {" "}
-            All{" "}
-          </Button>
+          <Button variant="light" color="red" onClick={handleResetAll}>All</Button>
 
           <TextInput
             className="search-bar"

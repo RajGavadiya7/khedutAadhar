@@ -3,15 +3,24 @@ import "./BuyCropCard.css";
 import { Link } from "react-router-dom";
 import {Loader , Rating } from "@mantine/core"
 import { useNavigate } from "react-router-dom";
+import { Target } from 'tabler-icons-react';
 // import { useEffect } from 'react';
 
 const BuyCropCard = ({ crop }) => {
 
   const navigate = useNavigate();
 
+  // render on new blankpage
+
+  const renderCropPage = () => {
+    window.open(`/buy_crop/${crop.id}`);
+  };
+
+
 
   return (
-    <div onClick={() => navigate(`/buy_crop/${crop.id}`)} className="buy-crop-container">
+    // render to new page
+    <div  onClick={renderCropPage} className="buy-crop-container">
       
       <div className="buy-crop-image-container">
           {/* <img className="buy-crop-image" src={crop.selectedCropImage} alt="Selected Crop" /> */}
